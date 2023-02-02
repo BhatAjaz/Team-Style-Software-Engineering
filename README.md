@@ -3,9 +3,13 @@
 ## Members
 
 **Eric**
+
 **Qayyum**
+
 **Haziq**
+
 **Wajihah**
+
 **Wee**
 
-We do the thing that people see
+##We do the thing that people see
