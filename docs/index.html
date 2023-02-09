@@ -19,7 +19,6 @@
       ></i>
       <p class="text-xl font-semibold tracking-[0.3em]">WEBBIE WIZZIES</p>
       <div></div>
-      <div></div>
     </nav>
     <!-- END NAVBAR -->
 
@@ -29,7 +28,7 @@
       <img
         src="images/dog1.jpg"
         alt="rotating images"
-        class="aspect-video h-52 object-contain my-4"
+        class="aspect-video h-52 object-contain my-4 mx-auto brightness-50 bg-gray-400 md:object-fill md:w-full"
       />
 
       <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -40,9 +39,9 @@
     <!-- END HEADER IMAGE -->
     <hr class="border-black" />
     <!-- START MAIN CONTENT -->
-    <main>
-      <!-- START SHOWCASE -->
-      <section id="showcase" class="showcase mt-8 mb-4">
+    <main class="lg:grid lg:grid-cols-5 lg:grid-flow-row-dense">
+      <!-- START LATEST -->
+      <section id="latest" class="latest mt-8 mb-4 lg:col-start-3">
         <p class="font-semibold text-[1.06rem] tracking-[0.15em] text-center">
           THE LATEST
         </p>
@@ -107,10 +106,10 @@
         </article>
         <!-- END SHOWCASE ITEM 2 -->
       </section>
-      <!-- END SHOWCASE -->
+      <!-- END LATEST -->
 
       <!-- START AUDIO CLIPS -->
-      <section id="audio" class="w-8/12 mx-auto my-8">
+      <section id="audio" class="w-8/12 mx-auto my-8 lg:col-start-4">
         <header class="text-center">
           <i class="fa-solid fa-ear-listen text-4xl mb-3"></i>
           <p><span class="font-bold">WEBIZ</span> AUDIO</p>
@@ -139,7 +138,7 @@
       <!-- END AUDIO CLIPS -->
 
       <!-- START DAILY -->
-      <section id="daily" class="text-center my-8">
+      <section id="daily" class="text-center my-8 lg:col-start-2">
         <p><span class="font-bold">WEBIZ</span> DAILY</p>
 
         <hr class="border-gray-500 my-4" />
@@ -193,7 +192,7 @@
       <!-- END DAILY -->
 
       <!-- START TWITTER -->
-      <section id="twitter text-center mx-auto my-8">
+      <section id="twitter text-center mx-auto my-8 lg:col-start-4">
         <p class="text-center">TWITTER</p>
         <hr class="border-black w-11/12 mx-auto my-4" />
         <div class="twitter-link flex justify-center gap-6">
@@ -206,7 +205,7 @@
       <!-- END TWITTER -->
 
       <!-- START MISCELLANEOUS -->
-      <section id="miscellaneous" class="my-10 text-center">
+      <section id="miscellaneous" class="my-10 text-center lg:col-start-2">
         <i class="fa-solid fa-bullhorn text-4xl"></i>
         <p class="font-bold tracking-widest text-xl">THE BIZ</p>
 
