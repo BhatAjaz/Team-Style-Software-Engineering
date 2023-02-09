@@ -42,7 +42,7 @@
     <!-- START MAIN CONTENT -->
     <main>
       <!-- START SHOWCASE -->
-      <section class="showcase mt-8 mb-4">
+      <section id="showcase" class="showcase mt-8 mb-4">
         <p class="font-semibold text-[1.06rem] tracking-[0.15em] text-center">
           THE LATEST
         </p>
@@ -53,7 +53,7 @@
             <img
               src="images/cat1.jpg"
               alt="an image"
-              class="h-80 mx-auto brightness-50"
+              class="h-80 mx-auto brightness-50 object-contain"
             />
             <div
               class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white p-1 hover:cursor-pointer"
@@ -83,7 +83,7 @@
             <img
               src="images/dog2.jpg"
               alt="an image"
-              class="h-80 mx-auto brightness-50"
+              class="h-80 mx-auto brightness-50 object-contain"
             />
             <div
               class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white p-1 hover:cursor-pointer"
@@ -110,10 +110,10 @@
       <!-- END SHOWCASE -->
 
       <!-- START AUDIO CLIPS -->
-      <section class="w-8/12 mx-auto my-4">
+      <section id="audio" class="w-8/12 mx-auto my-8">
         <header class="text-center">
           <i class="fa-solid fa-ear-listen text-4xl mb-3"></i>
-          <p><span class="font-bold">WIZZIES</span> AUDIO</p>
+          <p><span class="font-bold">WEBIZ</span> AUDIO</p>
           <p class="italic">Music, Interviews + More</p>
         </header>
         <hr class="border-gray-500" />
@@ -137,6 +137,70 @@
         </div>
       </section>
       <!-- END AUDIO CLIPS -->
+
+      <!-- START DAILY -->
+      <section id="daily" class="text-center my-8">
+        <p><span class="font-bold">WEBIZ</span> DAILY</p>
+
+        <hr class="border-gray-500 my-4" />
+
+        <p class="italic font-light tracking-widest">February 9, 2023</p>
+
+        <article class="showcase-item item-1 w-9/12 text-center mx-auto">
+          <img
+            src="images/cat4.jpg"
+            alt="an image"
+            class="h-36 mx-auto brightness-50 max-w-[90%] object-contain my-4"
+          />
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
+            dolore explicabo illo.
+          </p>
+          <hr class="w-16 border-gray-500 mx-auto" />
+          <p class="my-4">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
+            dignissimos excepturi maxime?
+          </p>
+
+          <hr class="w-16 border-gray-500 mx-auto" />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </article>
+
+        <button
+          class="tracking-wider text-gray-400 border-[3px] border-gray-400 px-6 py-2 my-4 block mx-auto"
+        >
+          MORE NEWS
+        </button>
+
+        <!-- doesnt work yet -->
+        <div class="subscribe mx-auto my-14">
+          <p>SUBSCRIBE TO WEBIZ DAILY</p>
+          <form action="" class="">
+            <input
+              type="text"
+              placeholder="Email"
+              class="block border-2 border-black mx-auto my-3 p-2"
+            />
+            <input
+              type="submit"
+              value="SUBMIT"
+              class="block mx-auto bg-gray-500 text-white py-1 px-6"
+            />
+          </form>
+        </div>
+      </section>
+      <!-- END DAILY -->
+
+      <!-- START TWITTER -->
+      <section id="twitter text-center mx-auto">
+        <p>TWITTER</p>
+        <hr />
+        <div class="twitter-link">
+          <!-- fa icon -->
+          <p class="font-bold">FOLLOW WEBIZ TWITTER</p>
+        </div>
+      </section>
     </main>
     <!-- END MAIN CONTENT -->
 
