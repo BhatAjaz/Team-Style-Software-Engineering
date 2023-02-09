@@ -1,0 +1,25 @@
+{
+    "name": "bengl/team-style-software-engineering",
+    "description": "ZZ-2204 Website Project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "BengGit",
+            "email": "benglei03606@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "grpc/grpc": "1.38",
+        "google/protobuf": "3.17",
+        "google/cloud": "dev-main",
+        "phpunit/phpunit": "^10.0.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "backend\\": "backend",
+            "backend\tests\\": "backend/tests"
+        }
+    }
+}
