@@ -4,14 +4,129 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Webbie Wizzies</title>
     <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/c1f88b97d8.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body>
-    <p>Front end style team</p>
+  <body class="border-t-4 border-black py-4">
+    <!-- START NAVBAR -->
+    <nav class="flex flex-row w-full justify-between mx-3">
+      <i
+        class="fa-solid fa-bars-staggered hover:cursor-pointer text-xl my-auto text-gray-600"
+      ></i>
+      <p class="text-xl font-semibold tracking-[0.3em]">WEBBIE WIZZIES</p>
+      <div></div>
+      <div></div>
+    </nav>
+    <!-- END NAVBAR -->
 
+    <!-- START HEADER IMAGE -->
+    <header class="relative text-center text-white">
+      <!-- images should have aspect ratio close to 16/9 here -->
+      <img
+        src="images/dog1.jpg"
+        alt="rotating images"
+        class="aspect-video h-52 object-contain my-4"
+      />
 
-    <p>yay?</p>
+      <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        Doggo Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Architecto nobis non deleniti?
+      </p>
+    </header>
+    <!-- END HEADER IMAGE -->
+    <hr class="border-black" />
+    <!-- START MAIN CONTENT -->
+    <main>
+      <!-- START SHOWCASE -->
+      <section class="showcase my-8">
+        <p class="font-semibold text-[1.06rem] tracking-[0.15em] text-center">
+          THE LATEST
+        </p>
+
+        <!-- START SHOWCASE ITEM 1 -->
+        <article class="showcase-item item-1">
+          <div class="img-container my-10 relative text-center text-white">
+            <img
+              src="images/cat1.jpg"
+              alt="an image"
+              class="h-80 mx-auto brightness-50"
+            />
+            <div
+              class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white p-1 hover:cursor-pointer"
+            >
+              What to watch
+            </div>
+            <div
+              class="absolute top-2/4 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:cursor-pointer text-lg font-bold"
+            >
+              Cat leads fashion trend
+            </div>
+            <div
+              class="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:cursor-pointer text-md font-bold"
+            >
+              "Meow meow get on with the times purr"
+            </div>
+          </div>
+          <div class="attribution text-slate-600 text-sm text-center">
+            By <span class="text-black">John Doe</span> February 9, 2023
+          </div>
+        </article>
+        <!-- END SHOWCASE ITEM 1 -->
+
+        <!-- START SHOWCASE ITEM 2 -->
+        <article class="showcase-item item-2">
+          <div class="img-container my-10 relative text-center text-white">
+            <img
+              src="images/dog2.jpg"
+              alt="an image"
+              class="h-80 mx-auto brightness-50"
+            />
+            <div
+              class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white p-1 hover:cursor-pointer"
+            >
+              Dog History
+            </div>
+            <div
+              class="absolute top-2/4 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:cursor-pointer text-lg font-bold"
+            >
+              Dog Finds true love
+            </div>
+            <div
+              class="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 hover:cursor-pointer text-md font-bold"
+            >
+              "woof~ •̀⩊•́"
+            </div>
+          </div>
+          <div class="attribution text-slate-600 text-sm text-center">
+            By <span class="text-black">Garry Smith</span> February 8, 2023
+          </div>
+        </article>
+        <!-- END SHOWCASE ITEM 2 -->
+      </section>
+      <!-- END SHOWCASE -->
+
+      <!-- START AUDIO CLIPS -->
+      <section class="w-8/12 mx-auto">
+        <header class="text-center">
+          <i class="fa-solid fa-ear-listen text-4xl mb-3"></i>
+          <p><span class="font-bold">WIZZIES</span> AUDIO</p>
+          <p class="italic">Music, Interviews + More</p>
+        </header>
+        <hr class="border-gray-500" />
+        <!-- some time slider thing to visualise audio progress -->
+        <div class="">slider* not yet implemeneted</div>
+
+        <p class="text-gray-500 text-center">NOW PLAYING:</p>
+
+        <hr class="border-gray-500" />
+      </section>
+      <!-- END AUDIO CLIPS -->
+    </main>
+    <!-- END MAIN CONTENT -->
 
     <script src="scripts.js"></script>
   </body>
