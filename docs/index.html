@@ -39,7 +39,7 @@
     <!-- END HEADER IMAGE -->
     <hr class="border-black" />
     <!-- START MAIN CONTENT -->
-    <main class="lg:grid lg:grid-cols-5 lg:grid-flow-row-dense">
+    <main class="lg:grid lg:grid-cols-5 lg:grid-flow-dense">
       <!-- START LATEST -->
       <section id="latest" class="latest mt-8 mb-4 lg:col-start-3">
         <p class="font-semibold text-[1.06rem] tracking-[0.15em] text-center">
@@ -109,7 +109,7 @@
       <!-- END LATEST -->
 
       <!-- START AUDIO CLIPS -->
-      <section id="audio" class="w-8/12 mx-auto my-8 lg:col-start-4">
+      <section id="audio" class="w-8/12 mx-auto my-8 lg:col-start-4 order-2">
         <header class="text-center">
           <i class="fa-solid fa-ear-listen text-4xl mb-3"></i>
           <p><span class="font-bold">WEBIZ</span> AUDIO</p>
@@ -192,7 +192,7 @@
       <!-- END DAILY -->
 
       <!-- START TWITTER -->
-      <section id="twitter text-center mx-auto my-8 lg:col-start-4">
+      <section id="twitter " class="text-center mx-auto my-8 lg:col-start-2 ">
         <p class="text-center">TWITTER</p>
         <hr class="border-black w-11/12 mx-auto my-4" />
         <div class="twitter-link flex justify-center gap-6">
@@ -205,7 +205,7 @@
       <!-- END TWITTER -->
 
       <!-- START MISCELLANEOUS -->
-      <section id="miscellaneous" class="my-10 text-center lg:col-start-2">
+      <section id="miscellaneous" class="my-10 text-center lg:col-start-4 order-1">
         <i class="fa-solid fa-bullhorn text-4xl"></i>
         <p class="font-bold tracking-widest text-xl">THE BIZ</p>
 
@@ -255,9 +255,21 @@
         </article>
         <!-- END ARTICLE 2 -->
       </section>
+      <!-- END MISCELLANEOUS -->
+
+    <!-- adverts -->
+      <section class="advert lg:col-start-1 h-full object-fill">
+        <img src="images/dog4.jpg" alt="" />
+      </section>
+
+      <section class="advert lg:col-start-5 h-full object-fill">
+        <img src="images/dog4.jpg" alt="" />
+      </section>
+      <!-- end adverts -->
     </main>
     <!-- END MAIN CONTENT -->
 
+    <!-- START FOOTER -->
     <footer class="bg-black w-full text-white text-center">
       <p class="text-red-700">WEBBIE WIZZIES</p>
       <ul class="my-8">
@@ -269,6 +281,7 @@
       <p class="my-4">@ WEBIZ</p>
       <a href="#header" class="text-sm">BACK TO TOP ^</a>
     </footer>
+    <!-- END FOOTER -->
 
     <script src="scripts.js"></script>
   </body>
