@@ -513,40 +513,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 .absolute {
   position: absolute;
 }
@@ -563,10 +529,6 @@ video {
   left: 50%;
 }
 
-.top-3\/4 {
-  top: 75%;
-}
-
 .top-1\/4 {
   top: 25%;
 }
@@ -575,14 +537,8 @@ video {
   top: 50%;
 }
 
-.mx-6 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
+.top-3\/4 {
+  top: 75%;
 }
 
 .mx-3 {
@@ -590,24 +546,14 @@ video {
   margin-right: 0.75rem;
 }
 
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
-
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .my-8 {
@@ -615,20 +561,26 @@ video {
   margin-bottom: 2rem;
 }
 
-.mt-10 {
+.my-10 {
   margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .mt-8 {
   margin-top: 2rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mb-3 {
-  margin-bottom: 0.75rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .flex {
@@ -647,12 +599,24 @@ video {
   height: 20rem;
 }
 
-.w-full {
-  width: 100%;
+.h-8 {
+  height: 2rem;
 }
 
-.w-8 {
-  width: 2rem;
+.h-14 {
+  height: 3.5rem;
+}
+
+.h-2 {
+  height: 0.5rem;
+}
+
+.h-24 {
+  height: 6rem;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .w-8\/12 {
@@ -681,18 +645,6 @@ video {
   justify-content: space-between;
 }
 
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
-.border-8 {
-  border-width: 8px;
-}
-
-.border-2 {
-  border-width: 2px;
-}
-
 .border {
   border-width: 1px;
 }
@@ -716,53 +668,13 @@ video {
   border-color: rgb(107 114 128 / var(--tw-border-opacity));
 }
 
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.object-fill {
-  -o-object-fit: fill;
-     object-fit: fill;
-}
-
 .p-1 {
   padding: 0.25rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
 }
 
 .py-4 {
@@ -770,31 +682,8 @@ video {
   padding-bottom: 1rem;
 }
 
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
 .text-center {
   text-align: center;
-}
-
-.align-middle {
-  vertical-align: middle;
-}
-
-.align-bottom {
-  vertical-align: bottom;
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
 }
 
 .text-xl {
@@ -802,21 +691,13 @@ video {
   line-height: 1.75rem;
 }
 
+.text-\[1\.06rem\] {
+  font-size: 1.06rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-
-.text-\[1\.1rem\] {
-  font-size: 1.1rem;
-}
-
-.text-\[1\.08rem\] {
-  font-size: 1.08rem;
-}
-
-.text-\[1\.06rem\] {
-  font-size: 1.06rem;
 }
 
 .text-sm {
@@ -824,44 +705,33 @@ video {
   line-height: 1.25rem;
 }
 
-.text-\[0\.6rem\] {
-  font-size: 0.6rem;
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-\[0\.75rem\] {
   font-size: 0.75rem;
 }
 
-.font-bold {
-  font-weight: 700;
-}
-
 .font-semibold {
   font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .italic {
   font-style: italic;
 }
 
-.tracking-widest {
-  letter-spacing: 0.1em;
+.tracking-\[0\.3em\] {
+  letter-spacing: 0.3em;
 }
 
 .tracking-\[0\.15em\] {
   letter-spacing: 0.15em;
-}
-
-.tracking-\[0\.2em\] {
-  letter-spacing: 0.2em;
-}
-
-.tracking-\[0\.4em\] {
-  letter-spacing: 0.4em;
-}
-
-.tracking-\[0\.3em\] {
-  letter-spacing: 0.3em;
 }
 
 .text-gray-600 {
