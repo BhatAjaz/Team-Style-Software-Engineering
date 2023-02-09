@@ -13,7 +13,7 @@
   </head>
   <body class="border-t-4 border-black py-4">
     <!-- START NAVBAR -->
-    <nav class="flex flex-row w-full justify-between mx-3">
+    <nav id="navbar" class="flex flex-row w-full justify-between mx-3">
       <i
         class="fa-solid fa-bars-staggered hover:cursor-pointer text-xl my-auto text-gray-600"
       ></i>
@@ -24,7 +24,7 @@
     <!-- END NAVBAR -->
 
     <!-- START HEADER IMAGE -->
-    <header class="relative text-center text-white">
+    <header id="header" class="relative text-center text-white">
       <!-- images should have aspect ratio close to 16/9 here -->
       <img
         src="images/dog1.jpg"
@@ -204,8 +204,72 @@
         </div>
       </section>
       <!-- END TWITTER -->
+
+      <!-- START MISCELLANEOUS -->
+      <section id="miscellaneous" class="my-10 text-center">
+        <i class="fa-solid fa-bullhorn text-4xl"></i>
+        <p class="font-bold tracking-widest text-xl">THE BIZ</p>
+
+        <!-- START ARTICLE 1 -->
+        <article class="misc-item-1 w-11/12 text-center mx-auto">
+          <img
+            src="images/cat3.jpg"
+            alt="an image"
+            class="h-80 mx-auto brightness-50 object-contain my-4"
+          />
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
+            dolore explicabo illo.
+          </p>
+          <hr class="w-16 border-gray-500 mx-auto" />
+          <p class="my-4">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
+            dignissimos excepturi maxime?
+          </p>
+
+          <hr class="w-16 border-gray-500 mx-auto" />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </article>
+        <!-- END ARTICLE 1 -->
+
+        <!-- START ARTICLE 2 -->
+        <article class="misc-item-1 w-11/12 text-center mx-auto">
+          <img
+            src="images/dog3.jpg"
+            alt="an image"
+            class="h-80 mx-auto brightness-50 object-contain my-4"
+          />
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
+            dolore explicabo illo.
+          </p>
+          <hr class="w-16 border-gray-500 mx-auto" />
+          <p class="my-4">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
+            dignissimos excepturi maxime?
+          </p>
+
+          <hr class="w-16 border-gray-500 mx-auto" />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </article>
+        <!-- END ARTICLE 2 -->
+      </section>
     </main>
     <!-- END MAIN CONTENT -->
+
+    <footer class="bg-black w-full text-white text-center">
+      <p class="text-red-700">WEBBIE WIZZIES</p>
+      <ul class="my-8">
+        <li>ABOUT</li>
+        <li>CONTACT US</li>
+        <li>PRIVACY POLICY</li>
+        <li>LICENSE</li>
+      </ul>
+      <p class="my-4">@ WEBIZ</p>
+      <a href="#header" class="text-sm">BACK TO TOP ^</a>
+    </footer>
 
     <script src="scripts.js"></script>
   </body>
