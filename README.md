@@ -30,3 +30,5 @@
  2. Install PHP
  3. Install Xdebug
  4. Install gRPC through the plugin section on PHP Storm
+ 
+ Ask backend team for password to Firebase Account.
