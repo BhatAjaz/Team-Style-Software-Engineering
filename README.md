@@ -27,6 +27,9 @@
 
 ## Backend Notes
 
+Ask backend team for password to Firebase Account.
+
+
 Free IDE Student License:
 https://www.jetbrains.com/community/education/#students
 
@@ -48,8 +51,8 @@ https://codeigniter.com/userguide3/general/styleguide.html#php-style-guide
 Firestore Documentation:
 https://firebase.google.com/docs/firestore
 
-
- Ask backend team for password to Firebase Account.
+Autoloader standards:
+https://www.php-fig.org/psr/psr-4/
  
 Homework for backend team:
 
