@@ -42,7 +42,6 @@ PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version b
  6. Connect to the GitHub project through PHPStorm
  7. Integrate XAMPP with IDE
  8. Setup IDE CLI
- 
 
 
 PHP Styleguide:
@@ -59,3 +58,8 @@ Homework for backend team:
 https://www.youtube.com/watch?v=f46svjvMNI4
 
 https://www.youtube.com/playlist?list=PLr_acfJGVciqSYT0IwZk6Pg5rVF8Q9UPJ
+
+https://www.jetbrains.com/help/phpstorm/configuring-folders-within-a-content-root.html
+
+https://www.youtube.com/watch?v=a5ZKCFINUkU
+https://www.jetbrains.com/help/phpstorm/using-phpunit-framework.html#generate_phpunit_test_for_a_class_in_a_separate_file
