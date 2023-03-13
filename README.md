@@ -34,9 +34,9 @@ PHP IDE setup:
  1. Install PHP Storm
  2. Install PHP
  3. Install Xdebug
- 4. Install gRPC through the plugin section on PHP Storm
+ 4. Install Composer
+ 5. Install gRPC
  
- Ask backend team for password to Firebase Account.
 
 
 PHP Styleguide:
@@ -45,3 +45,5 @@ https://codeigniter.com/userguide3/general/styleguide.html#php-style-guide
 Firestore Documentation:
 https://firebase.google.com/docs/firestore
 
+
+ Ask backend team for password to Firebase Account.
