@@ -30,12 +30,12 @@
 Free IDE Student License:
 https://www.jetbrains.com/community/education/#students
 
-PHP IDE setup:
+PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version below
  1. Install PHP Storm
- 2. Install PHP
- 3. Install Xdebug
- 4. Install Composer
- 5. Install gRPC
+ 2. Install PHP 8.1
+ 3. Install Xdebug (Use the wizard)
+ 4. Install Composer (use installer)
+ 5. Install gRPC 1.43.0
  
 
 
