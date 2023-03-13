@@ -31,11 +31,14 @@ Free IDE Student License:
 https://www.jetbrains.com/community/education/#students
 
 PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version below
- 1. Install PHP Storm
+ 1. Install PHPStorm IDE
  2. Install XAMPP PHP 8.1.12
  3. Install Xdebug (Use the wizard)
  4. Install Composer (use installer)
  5. Install gRPC 1.43.0
+ 6. Connect to the GitHub project through PHPStorm
+ 7. Integrate XAMPP with IDE
+ 8. Setup IDE CLI
  
 
 
