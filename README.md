@@ -51,4 +51,6 @@ https://firebase.google.com/docs/firestore
 
  Ask backend team for password to Firebase Account.
  
- something
+Homework for backend team:
+https://www.youtube.com/watch?v=f46svjvMNI4
+https://www.youtube.com/playlist?list=PLr_acfJGVciqSYT0IwZk6Pg5rVF8Q9UPJ
