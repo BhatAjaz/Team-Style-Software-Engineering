@@ -62,4 +62,5 @@ https://www.youtube.com/playlist?list=PLr_acfJGVciqSYT0IwZk6Pg5rVF8Q9UPJ
 
 https://www.jetbrains.com/help/phpstorm/configuring-folders-within-a-content-root.html
 
-https://www.youtube.com/watch?v=7YnYz_SjVbI
+https://www.jetbrains.com/help/phpstorm/using-phpunit-framework.html#generate_phpunit_test_for_a_class_in_a_separate_file
+https://www.youtube.com/watch?v=a5ZKCFINUkU
