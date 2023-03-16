@@ -549,14 +549,6 @@ video {
   order: 1;
 }
 
-.row-span-full {
-  grid-row: 1 / -1;
-}
-
-.row-span-4 {
-  grid-row: span 4 / span 4;
-}
-
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -635,10 +627,6 @@ video {
 
 .h-36 {
   height: 9rem;
-}
-
-.h-screen {
-  height: 100vh;
 }
 
 .h-full {
@@ -837,6 +825,10 @@ video {
   font-weight: 300;
 }
 
+.font-extrabold {
+  font-weight: 800;
+}
+
 .italic {
   font-style: italic;
 }
@@ -939,14 +931,6 @@ video {
 
   .lg\:grid-flow-dense {
     grid-auto-flow: dense;
-  }
-
-  .lg\:grid-flow-row-dense {
-    grid-auto-flow: row dense;
-  }
-
-  .lg\:grid-flow-col-dense {
-    grid-auto-flow: column dense;
   }
 
   .lg\:grid-cols-5 {
