@@ -2,12 +2,13 @@
 
  namespace backend\php\firestore;
 
+ use backend\php\firestore\interfaces\Firestore_interface;
  use Google\Cloud\Core\Exception\GoogleException;
  use Google\Cloud\Firestore\FirestoreClient;
  use Google\Cloud\Firestore\DocumentReference;
  use Google\Cloud\Firestore\CollectionReference;
 
- class Firestore
+ class Firestore implements Firestore_interface
  {
     private FirestoreClient $firestoreClient;
 
