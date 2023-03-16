@@ -1,0 +1,1 @@
+npx tailwindcss -i ./frontend/src/input.css -o ./frontend/docs/styles.css --watch
