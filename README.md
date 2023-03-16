@@ -42,7 +42,8 @@ PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version b
  6. Connect to the GitHub project through PHPStorm
  7. Integrate XAMPP with IDE
  8. Setup IDE CLI
- 9. Setup auto-testing before commits
+ 9. Type "composer install" into IDE terminal
+ 10.Setup auto-testing before commits
  https://www.jetbrains.com/help/phpstorm/performing-tests.html#run-tests-before-commit
 
 PHP Styleguide:
