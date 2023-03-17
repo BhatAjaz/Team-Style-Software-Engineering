@@ -44,6 +44,7 @@ PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version b
  8. Setup IDE CLI
  9. Setup auto-testing before commits
  https://www.jetbrains.com/help/phpstorm/performing-tests.html#run-tests-before-commit
+ 10. Run 'composer install' on the IDE's terminal
 
 PHP Styleguide:
 https://codeigniter.com/userguide3/general/styleguide.html#php-style-guide
@@ -64,3 +65,7 @@ https://www.jetbrains.com/help/phpstorm/configuring-folders-within-a-content-roo
 
 https://www.jetbrains.com/help/phpstorm/using-phpunit-framework.html#generate_phpunit_test_for_a_class_in_a_separate_file
 https://www.youtube.com/watch?v=a5ZKCFINUkU
+
+https://www.youtube.com/watch?v=HOVWXa7HBZY
+
+https://www.w3schools.com/php/php_oop_interfaces.asp
