@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<phpunit bootstrap="vendor/autoload.php"
-         colors="true"
-         stopOnFailure="false">
-    <testsuites>
-        <testsuite name="backend tests">
-            <directory>backend/tests</directory>
-        </testsuite>
-    </testsuites>
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="backend/php/util/bootstrap.php" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd" cacheDirectory=".phpunit.cache">
+  <testsuites>
+    <testsuite name="tests">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>
-
-
 <!-- Test in terminal using "./vendor/bin/phpunit (dash dash)testdox" -->

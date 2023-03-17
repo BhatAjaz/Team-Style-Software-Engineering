@@ -39,13 +39,12 @@ PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version b
  3. Install Xdebug (Use the wizard)
  4. Install Composer (use installer)
  5. Install gRPC 1.43.0
- 6. (For PHPStorm) Connect to the GitHub project
- 7. Run 'composer install' on the IDE's terminal
- 8. (For PHPStorm) Integrate XAMPP with IDE
- 9. (For PHPStorm) Setup IDE CLI
- 10. (For PHPStorm) Setup auto-testing before commits https://www.jetbrains.com/help/phpstorm/performing-tests.html#run-tests-before-commit
- 11. (For PHPStorm) Set the default bootstrap file under Settings>PHP>Test Frameworks to backend\php\util\bootstrap.php
-  
+ 6. Connect to the GitHub project through PHPStorm
+ 7. Integrate XAMPP with IDE
+ 8. Setup IDE CLI
+ 9. Setup auto-testing before commits
+ https://www.jetbrains.com/help/phpstorm/performing-tests.html#run-tests-before-commit
+
 PHP Styleguide:
 https://codeigniter.com/userguide3/general/styleguide.html#php-style-guide
 
@@ -65,7 +64,3 @@ https://www.jetbrains.com/help/phpstorm/configuring-folders-within-a-content-roo
 
 https://www.jetbrains.com/help/phpstorm/using-phpunit-framework.html#generate_phpunit_test_for_a_class_in_a_separate_file
 https://www.youtube.com/watch?v=a5ZKCFINUkU
-
-https://www.youtube.com/watch?v=HOVWXa7HBZY
-
-https://www.w3schools.com/php/php_oop_interfaces.asp
