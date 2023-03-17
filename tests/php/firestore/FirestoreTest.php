@@ -1,17 +1,21 @@
 <?php
 
-namespace tests\backend\php\firestore;
+namespace php\firestore;
 
 
 use backend\php\firestore\Firestore;
+use backend\php\firestore\interfaces\Firestore_interface;
 use PHPUnit\Framework\TestCase;
+use backend\php\util\Container;
 
 class FirestoreTest extends TestCase
 {
-    private Firestore $firestore;
+    private Firestore_interface $firestore;
+
     protected function setUp(): void
     {
-        $this->firestore = new Firestore();
+        $container = Container::getInstance();
+        $this->firestore = $container->resolve(Firestore_interface::class);
     }
     public function testGetArticle()
     {

@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"tests\\backend\\php\\back2front_interface\\Back2front_classesTest::testGetArticle":0.426,"tests\\backend\\php\\firestore\\FirestoreTest::testGetArticle":0.124,"tests\\backend\\php\\firestore\\FirestoreTest::test__construct":0.001}}

@@ -11,11 +11,12 @@
  class Firestore implements Firestore_interface
  {
     private FirestoreClient $firestoreClient;
+    private string $keyPath = __DIR__ . "/keys/zz-2204websiteproject-cbac90c118c2.json";
 
     public function __construct()
     {
             $this->firestoreClient = new FirestoreClient([
-                "keyFilePath" => __DIR__ . "/keys/zz-2204websiteproject-cbac90c118c2.json",
+                "keyFilePath" => $this->keyPath,
                 "projectId" => "zz-2204websiteproject",
             ]);
 
