@@ -2,13 +2,9 @@
 
  namespace backend\php\firestore;
 
- use backend\php\firestore\interfaces\Firestore_interface;
- use Google\Cloud\Core\Exception\GoogleException;
  use Google\Cloud\Firestore\FirestoreClient;
- use Google\Cloud\Firestore\DocumentReference;
- use Google\Cloud\Firestore\CollectionReference;
 
- class Firestore implements Firestore_interface
+ class Firestore implements FirestoreInterface
  {
     private FirestoreClient $firestoreClient;
     private string $keyPath = __DIR__ . "/keys/zz-2204websiteproject-cbac90c118c2.json";

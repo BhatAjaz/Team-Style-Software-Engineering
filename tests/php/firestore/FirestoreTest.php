@@ -4,18 +4,18 @@ namespace php\firestore;
 
 
 use backend\php\firestore\Firestore;
-use backend\php\firestore\interfaces\Firestore_interface;
-use PHPUnit\Framework\TestCase;
+use backend\php\firestore\FirestoreInterface;
 use backend\php\util\Container;
+use PHPUnit\Framework\TestCase;
 
 class FirestoreTest extends TestCase
 {
-    private Firestore_interface $firestore;
+    private FirestoreInterface $firestore;
 
     protected function setUp(): void
     {
         $container = Container::getInstance();
-        $this->firestore = $container->resolve(Firestore_interface::class);
+        $this->firestore = $container->resolve(FirestoreInterface::class);
     }
     public function testGetArticle()
     {

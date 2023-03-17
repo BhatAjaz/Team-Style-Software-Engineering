@@ -2,8 +2,8 @@
 
 require_once './backend/php/util/bootstrap.php';
 
+use backend\php\firestore\FirestoreInterface;
 use backend\php\util\Container;
-use backend\php\firestore\interfaces\Firestore_interface;
 
 interface DatabaseDriver{
     public function connect();
@@ -49,5 +49,5 @@ $app->resolve(UserModel::class);
 $app->bind(DatabaseDriver::class,MySQL::class);
 $app->resolve(UserModel::class);
 
-$db = $app->resolve(Firestore_interface::class);
+$db = $app->resolve(FirestoreInterface::class);
 print_r($db->getArticle("Articles","nRcGBJdO5l1KU"));
