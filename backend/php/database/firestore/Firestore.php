@@ -1,10 +1,11 @@
 <?php
 
- namespace backend\php\firestore;
+ namespace backend\php\database\firestore;
 
+ use backend\php\database\DatabaseInterface;
  use Google\Cloud\Firestore\FirestoreClient;
 
- class Firestore implements FirestoreInterface
+ class Firestore implements DatabaseInterface
  {
     private FirestoreClient $firestoreClient;
     private string $keyPath = __DIR__ . "/keys/zz-2204websiteproject-cbac90c118c2.json";

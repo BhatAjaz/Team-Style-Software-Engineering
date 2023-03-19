@@ -1,9 +1,9 @@
 <?php
 
 
-namespace backend\php\firestore;
+namespace backend\php\database;
 
-    interface FirestoreInterface
+    interface DatabaseInterface
     {
         public function getArticle(string $articles, string $document): array;
     }

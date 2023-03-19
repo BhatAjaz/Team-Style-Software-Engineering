@@ -3,29 +3,29 @@
 namespace php\firestore;
 
 
-use backend\php\firestore\Firestore;
-use backend\php\firestore\FirestoreInterface;
+use backend\php\database\firestore\Firestore;
+use backend\php\database\DatabaseInterface;
 use backend\php\util\Container;
 use PHPUnit\Framework\TestCase;
 
 class FirestoreTest extends TestCase
 {
-    private FirestoreInterface $firestore;
+    private DatabaseInterface $db;
 
     protected function setUp(): void
     {
         $container = Container::getInstance();
-        $this->firestore = $container->resolve(FirestoreInterface::class);
+        $this->db = $container->resolve(DatabaseInterface::class);
     }
     public function testGetArticle()
     {
-        $article = $this->firestore->getArticle("Articles","nRcGBJdO5l1KU");
+        $article = $this->db->getArticle("Articles","nRcGBJdO5l1KU");
         //$article = $this->firestore->cries();
         $this->assertNotEmpty($article);
     }
 
     public function test__construct()
     {
-        $this->assertInstanceOf(Firestore::class, $this->firestore);
+        $this->assertInstanceOf(Firestore::class, $this->db);
     }
 }
