@@ -154,6 +154,14 @@ namespace backend\php\database;
          * we can run this function periodically
          * to permanently delete documents that has been set to "deleted" for a while
          *
+         * Doing a for-loop to check for deleted articles will be time consuming
+         *
+         * As such, I believe when we "delete" an article,
+         * We should save the info of the "deleted" article in a separate collection
+         * Info should contain stuff like:
+         *      DocumentID, Address to document, "deletion" date, and other interesting info like user who deleted the article
+         *
+         *
          * pseudocode:
          * if (current_date - delete_date)>(20days):
          *      $db->delete($document)
