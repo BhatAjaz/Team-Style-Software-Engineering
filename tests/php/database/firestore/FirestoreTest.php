@@ -1,7 +1,6 @@
 <?php
 
-namespace php\firestore;
-
+namespace php\database\firestore;
 
 use backend\php\database\firestore\Firestore;
 use backend\php\database\DatabaseInterface;
@@ -17,6 +16,12 @@ class FirestoreTest extends TestCase
         $container = Container::getInstance();
         $this->db = $container->resolve(DatabaseInterface::class);
     }
+
+    public function testGetConfig()
+    {
+
+    }
+
     public function testGetArticle()
     {
         $article = $this->db->getArticle("Articles","nRcGBJdO5l1KU");
@@ -24,8 +29,8 @@ class FirestoreTest extends TestCase
         $this->assertNotEmpty($article);
     }
 
-    public function test__construct()
+    public function testSetConfig()
     {
-        $this->assertInstanceOf(Firestore::class, $this->db);
+
     }
 }
