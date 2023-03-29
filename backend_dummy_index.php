@@ -2,15 +2,14 @@
 
 require_once './backend/php/util/bootstrap.php';
 
-use backend\php\firestore\FirestoreInterface;
 use backend\php\util\Container;
 
-interface DatabaseDriver{
+interface DatabaseDriverTest{
     public function connect();
 
     public function query();
 }
-class MySQL implements DatabaseDriver{
+class MySQL implements DatabaseDriverTest{
     public function connect(){
         var_dump("connect mysql");
     }
@@ -18,7 +17,7 @@ class MySQL implements DatabaseDriver{
         var_dump("query mysql");
     }
 }
-class PostgreSQL implements DatabaseDriver{
+class PostgreSQL implements DatabaseDriverTest{
     public function connect(){
         var_dump("connect PostgreSQL");
     }
@@ -32,7 +31,7 @@ class FacebookLogin{
     }
 }
 class UserModel{
-    public function __construct(DatabaseDriver $driver, FacebookLogin $facebookLogin){
+    public function __construct(DatabaseDriverTest $driver, FacebookLogin $facebookLogin){
         $driver->connect();
         $driver->query();
     }
@@ -43,11 +42,12 @@ $app->bind(FacebookLogin::class, function(){
     return new FacebookLogin('secrets', 'secrets');
 });
 
-$app->bind(DatabaseDriver::class,PostgreSQL::class);
+$app->bind(DatabaseDriverTest::class,PostgreSQL::class);
 $app->resolve(UserModel::class);
 
-$app->bind(DatabaseDriver::class,MySQL::class);
+$app->bind(DatabaseDriverTest::class,MySQL::class);
 $app->resolve(UserModel::class);
 
-$db = $app->resolve(FirestoreInterface::class);
+use backend\php\database\DatabaseInterface;
+$db = $app->resolve(DatabaseInterface::class);
 print_r($db->getArticle("Articles","nRcGBJdO5l1KU"));

@@ -9,6 +9,4 @@ use backend\php\util\Container;
 
 $container = Container::getInstance();
 
-foreach ($config['interfaces'] as $interface => $concrete) {
-    $container->bind($interface, $concrete);
-}
+foreach ($config['interfaces'] as $interface => $concrete) $container->bind($interface, $concrete);
