@@ -2,11 +2,14 @@
 
 namespace backend\php\util;
 
-
-//dependency injection Container that automatically creates instances of all the dependencies of a class that is resolved out the IoC util.
 use Exception;
 use ReflectionClass;
 
+/**
+ * dependency injection Container that automatically creates instances of all the dependencies of a class that is resolved out the IoC util.
+ *
+ * @author Beng
+ */
 class Container
 {
     protected array $bindings = [];

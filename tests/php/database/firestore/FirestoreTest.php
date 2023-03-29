@@ -11,6 +11,11 @@ class FirestoreTest extends TestCase
 {
     private DatabaseInterface $db;
 
+    /**
+     * @return void
+     *
+     * @author Beng
+     */
     protected function setUp(): void
     {
         $container = Container::getInstance();
@@ -22,6 +27,10 @@ class FirestoreTest extends TestCase
 
     }
 
+    /**
+     * @return void
+     * @author Beng
+     */
     public function testGetArticle()
     {
         $article = $this->db->getArticle("Articles","nRcGBJdO5l1KU");
