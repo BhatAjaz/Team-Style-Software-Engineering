@@ -22,24 +22,70 @@ class FirestoreTest extends TestCase
         $this->db = $container->resolve(DatabaseInterface::class);
     }
 
-    public function testGetConfig()
-    {
-
-    }
-
     /**
      * @return void
      * @author Beng
      */
     public function testGetArticle()
     {
-        $article = $this->db->getArticle("Articles","nRcGBJdO5l1KU");
+        $article = $this->db->getArticle("Articles", "nRcGBJdO5l1KU");
         //$article = $this->firestore->cries();
         $this->assertNotEmpty($article);
     }
 
+    public function testGetConfig()
+    {
+        $jsonobj = $this->db->getConfig();
+        $arr = json_decode($jsonobj, true);
+
+        $this->assertStringContainsString("/keys/zz-2204websiteproject-cbac90c118c2.json", $arr["keyPath"], );
+        $this->assertStringContainsString("zz-2204websiteproject", $arr["projectID"]);
+    }
+
     public function testSetConfig()
     {
+        //TODO: write test for setConfig()
+    }
+
+    public function testGetArticles()
+    {
+        $return = $this->db->getArticles("");
+        $this->assertStringContainsString("articles", $return[0]);
+    }
+
+    public function testGetArticlesByID()
+    {
+        $return = $this->db->getArticlesbyID("");
+        $this->assertStringContainsString("articles", $return[0]);
+    }
+
+    public function testAddArticles()
+    {
+
+        $return = $this->db->addArticles("");
+        $this->assertStringContainsString("articles", $return);
+    }
+
+    public function testUpdateArticles()
+    {
+        $return = $this->db->updateArticles("");
+        $this->assertStringContainsString("articles", $return);
+
+    }
+
+    public function testDeleteArticles()
+    {
+        $return = $this->db->deleteArticles("");
+        $this->assertStringContainsString("articles", $return);
+
+
+    }
+
+
+    public function testMoveArticles()
+    {
+        $return = $this->db->moveArticles("");
+        $this->assertStringContainsString("articles", $return);
 
     }
 }
