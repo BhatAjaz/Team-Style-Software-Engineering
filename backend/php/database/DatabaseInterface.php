@@ -49,6 +49,13 @@ namespace backend\php\database;
          * returns an array of JSON strings, each string will represent an article including its contents
          *
          *
+         * Doing a for-loop to check for published articles will probably be time-consuming
+         *
+         * We should save the info of the published/unpublished articles in a separate collection
+         * Info should contain stuff like:
+         *      DocumentID, Address to document
+         *
+         * So we can use this list to retrieve the articles
          *
          * @param string $json
          * @return array
@@ -63,7 +70,7 @@ namespace backend\php\database;
          * @return string
          * @author Beng
          */
-        public function getArticlesByID(string $json): string;
+        public function getArticlesByID(string $json): array;
         /**
          * Use this to help with coding:
          * https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes

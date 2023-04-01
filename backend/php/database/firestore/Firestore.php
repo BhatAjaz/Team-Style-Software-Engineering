@@ -5,6 +5,9 @@
  use backend\php\database\DatabaseInterface;
  use Google\Cloud\Core\Exception\GoogleException;
  use Google\Cloud\Firestore\FirestoreClient;
+ use backend\php\util\Container;
+ use function React\Promise\resolve;
+ use backend\php\authentication\AuthenticatorInterface;
 
  /**
   *
@@ -16,16 +19,22 @@
     protected string $keyPath = __DIR__ . "/keys/zz-2204websiteproject-cbac90c118c2.json";
     protected string $projectID = "zz-2204websiteproject";
 
+    protected ?Container $container = null;
+    protected mixed $authenticator = null;
      /**
       * @throws GoogleException
       * @author Beng
       */
      public function __construct()
     {
+            $this->container = Container::getInstance();
+            $this->authenticator = $this->container->resolve(AuthenticatorInterface::class);
+
             $this->firestoreClient = new FirestoreClient([
                 "keyFilePath" => $this->keyPath,
                 "projectId" => $this->projectID,
             ]);
+
 
     }
 
@@ -84,15 +93,17 @@
      public function getArticles(string $json): array
      {
          // TODO: Implement getArticles() method.
+         return ["articles"];
      }
 
      /**
       * @param string $json
       * @return string
       */
-     public function getArticlesByID(string $json): string
+     public function getArticlesByID(string $json): array
      {
          // TODO: Implement getArticlesByID() method.
+         return ["articles by ID"];
      }
 
      /**
@@ -101,7 +112,12 @@
       */
      public function addArticles(string $json): string
      {
-         // TODO: Implement addArticles() method.
+         if ($this->authenticator->userIs('admin'))
+         {
+             // TODO: Implement addArticles() method.
+             return "added articles";
+         }
+         return "failed";
      }
 
      /**
@@ -110,7 +126,12 @@
       */
      public function moveArticles(string $json): string
      {
-         // TODO: Implement moveArticles() method.
+         if ($this->authenticator->userIs('admin'))
+         {
+            // TODO: Implement moveArticles() method.
+             return "moved articles";
+         }
+         return "failed";
      }
 
      /**
@@ -119,7 +140,12 @@
       */
      public function updateArticles(string $jsons): string
      {
-         // TODO: Implement updateArticles() method.
+         if ($this->authenticator->userIs('admin'))
+         {
+            // TODO: Implement updateArticles() method.
+             return "updated articles";
+         }
+         return "failed";
      }
 
      /**
@@ -127,6 +153,11 @@
       */
      public function deleteArticles(): string
      {
+         if ($this->authenticator->userIs('admin'))
+         {
          // TODO: Implement deleteArticles() method.
+             return "deleted articles";
+         }
+         return "failed";
      }
  }
