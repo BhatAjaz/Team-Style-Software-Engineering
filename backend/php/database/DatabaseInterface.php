@@ -61,7 +61,7 @@ namespace backend\php\database;
          * @return array
          * @author Beng
          */
-        public function getArticles(string $json): array;
+        public function getArticles(string $json): string;
         /**
          * https://firebase.google.com/docs/firestore/query-data/get-data
          * json contains list of documentID and collection name to get articles from

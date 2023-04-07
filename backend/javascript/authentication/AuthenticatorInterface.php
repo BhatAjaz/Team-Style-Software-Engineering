@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\php\authentication;
+namespace backend\javascript\authentication;
 
 /**
  * Maybe users can have different attributes?
