@@ -3,11 +3,10 @@
  namespace backend\php\database\firestore;
 
  use backend\php\database\DatabaseInterface;
+ use backend\php\util\Container;
  use Google\Cloud\Core\Exception\GoogleException;
  use Google\Cloud\Firestore\FirestoreClient;
- use backend\php\util\Container;
- use function React\Promise\resolve;
- use backend\php\authentication\AuthenticatorInterface;
+ use Google\Cloud\Firestore\DocumentSnapshot;
 
  /**
   *
@@ -16,11 +15,16 @@
  class Firestore implements DatabaseInterface
  {
     protected FirestoreClient $firestoreClient;
-    protected string $keyPath = __DIR__ . "/keys/zz-2204websiteproject-cbac90c118c2.json";
+    protected string $keyPath = "/keys/zz-2204websiteproject-cbac90c118c2.json";
     protected string $projectID = "zz-2204websiteproject";
 
     protected ?Container $container = null;
-    protected mixed $authenticator = null;
+
+
+    protected string $rootCollection = "Articles";
+    protected string $articleSubCollection = "Articles";
+
+
      /**
       * @throws GoogleException
       * @author Beng
@@ -28,10 +32,9 @@
      public function __construct()
     {
             $this->container = Container::getInstance();
-            $this->authenticator = $this->container->resolve(AuthenticatorInterface::class);
 
             $this->firestoreClient = new FirestoreClient([
-                "keyFilePath" => $this->keyPath,
+                "keyFilePath" => __DIR__ . $this->keyPath,
                 "projectId" => $this->projectID,
             ]);
 
@@ -67,6 +70,7 @@
      public function getConfig(): string
      {
          $config = array(
+             "db" => "firestore",
              "keyPath" => $this->keyPath,
              "projectID" => $this->projectID
          );
@@ -90,20 +94,70 @@
       * @param string $json
       * @return array
       */
-     public function getArticles(string $json): array
+     public function getArticles(string $json): string
      {
-         // TODO: Implement getArticles() method.
-         return ["articles"];
+         $jsonArr = json_decode($json,true);
+
+         $ref = $this->firestoreClient->collection($this->rootCollection)->document($jsonArr['from'])->collection($this->articleSubCollection);
+
+         if(array_key_exists('noOfArticles',$jsonArr))
+         {
+             $noArticles = $jsonArr['noOfArticles'];
+         }
+         else
+         {
+             $noArticles = 5;
+         }
+
+         if(array_key_exists('sortBy',$jsonArr))
+         {
+             $sortBy = $jsonArr['sortBy'];
+         }
+         else
+         {
+             $sortBy = "title";
+         }
+         if(array_key_exists('order',$jsonArr) && $jsonArr['order'] == "descending")
+         {
+             $order = 'DESC';
+         }
+         else
+         {
+             $order = 'ASC';
+         }
+
+         $query = $ref
+             ->orderBy($sortBy, $order)
+             ->limit($noArticles);
+
+         $documents = $query->documents();
+
+         $articles = array();
+
+         foreach ($documents as $document) {
+             if ($document->exists()) {
+                 $article = array();
+                 $article['id'] = $document->id();
+                 $article = array_merge($article,$document->data());
+
+                 $articles[] = $article;
+             } else {
+                 printf('Document %s does not exist!' . PHP_EOL, $document->id());
+             }
+         }
+
+
+         return json_encode(array("articles" => $articles));
      }
 
      /**
       * @param string $json
       * @return string
       */
-     public function getArticlesByID(string $json): array
+     public function getArticlesByID(string $json): string
      {
          // TODO: Implement getArticlesByID() method.
-         return ["articles by ID"];
+         return "articles by ID";
      }
 
      /**
@@ -112,12 +166,9 @@
       */
      public function addArticles(string $json): string
      {
-         if ($this->authenticator->userIs('admin'))
-         {
              // TODO: Implement addArticles() method.
              return "added articles";
-         }
-         return "failed";
+
      }
 
      /**
@@ -126,12 +177,8 @@
       */
      public function moveArticles(string $json): string
      {
-         if ($this->authenticator->userIs('admin'))
-         {
             // TODO: Implement moveArticles() method.
              return "moved articles";
-         }
-         return "failed";
      }
 
      /**
@@ -140,12 +187,8 @@
       */
      public function updateArticles(string $jsons): string
      {
-         if ($this->authenticator->userIs('admin'))
-         {
             // TODO: Implement updateArticles() method.
              return "updated articles";
-         }
-         return "failed";
      }
 
      /**
@@ -153,11 +196,7 @@
       */
      public function deleteArticles(): string
      {
-         if ($this->authenticator->userIs('admin'))
-         {
          // TODO: Implement deleteArticles() method.
              return "deleted articles";
-         }
-         return "failed";
      }
  }

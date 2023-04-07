@@ -70,11 +70,11 @@ class DatabaseTest extends TestCase
             "articles" => array(
                 array(
                     "id" => "YhC9FJUY03km13UWybCJ",
-                    "author" => "Beng",
-                    "content" => "Crimereads",
+                    "title" => "Crimereads Title 1",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
-                    "publish_date" => mktime(5,58,23,4,7,2023),
-                    "title" => "Crimereads Title 1"
+                    "author" => "Beng",
+                    "publish_date" => "2023-04-07T09:58:23.687000Z",
+                    "content" => "Crimereads"
                 )
             )
         ));
@@ -96,19 +96,19 @@ class DatabaseTest extends TestCase
             "articles" => array(
                 array(
                     "id" => "YhC9FJUY03km13UWybCJ",
-                    "author" => "Beng",
-                    "content" => "Crimereads",
+                    "title" => "Crimereads Title 1",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
-                    "publish_date" => mktime(5,58,23,4,7,2023),
-                    "title" => "Crimereads Title 1"
+                    "author" => "Beng",
+                    "publish_date" => "2023-04-07T09:58:23.687000Z",
+                    "content" => "Crimereads"
                 ),
                 array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
-                    "author" => "Beng",
-                    "content" => "Crimereads",
+                    "title" => "Crimereads Title 2",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
-                    "publish_date" => mktime(5,59,18,4,7,2023),
-                    "title" => "Crimereads Title 2"
+                    "author" => "Beng",
+                    "publish_date" => "2023-04-07T09:59:18.789000Z",
+                    "content" => "Crimereads"
                 )
             )
         ));
@@ -138,11 +138,11 @@ class DatabaseTest extends TestCase
             "articles" => array(
                 array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
-                    "author" => "Beng",
-                    "content" => "Crimereads",
+                    "title" => "Crimereads Title 2",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
-                    "publish_date" => mktime(5,59,18,4,7,2023),
-                    "title" => "Crimereads Title 2"
+                    "author" => "Beng",
+                    "publish_date" => "2023-04-07T09:59:18.789000Z",
+                    "content" => "Crimereads"
                 )
             )
         ));
@@ -168,19 +168,19 @@ class DatabaseTest extends TestCase
         $expected = json_encode(array(
             "articles" => array(
                 array(
-                        "id" => "YhC9FJUY03km13UWybCJ",
-                        "author" => "Beng",
-                        "content" => "Crimereads",
-                        "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
-                        "publish_date" => mktime(5,58,23,4,7,2023),
-                        "title" => "Crimereads Title 1"
+                    "id" => "vG7GatbnFqHds1SiTtnB",
+                    "title" => "Crimereads Title 2",
+                    "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
+                    "author" => "Beng",
+                    "publish_date" => "2023-04-07T09:59:18.789000Z",
+                    "content" => "Crimereads"
                 ),
                 array(
                     "id" => "ex7UanwL6Pf5dWUKTw90",
-                    "author" => "Beng",
-                    "content" => "Fiction and Poetry",
+                    "title" => "Fiction and Poetry Title 1",
                     "img_url" => "https://pediaa.com/wp-content/uploads/2021/08/Books-old-books-novels-vintage-reading-library.jpg",
-                    "title" => "Fiction and Poetry Title 1"
+                    "author" => "Beng",
+                    "content" => "Fiction and Poetry"
                 )
             )
         ));
