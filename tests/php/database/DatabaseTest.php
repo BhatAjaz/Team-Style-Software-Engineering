@@ -68,7 +68,7 @@ class DatabaseTest extends TestCase
 
         $expected = json_encode(array(
             "articles" => array(
-                "article1" => array(
+                array(
                     "id" => "YhC9FJUY03km13UWybCJ",
                     "author" => "Beng",
                     "content" => "Crimereads",
@@ -94,7 +94,7 @@ class DatabaseTest extends TestCase
 
         $expected = json_encode(array(
             "articles" => array(
-                "article1" => array(
+                array(
                     "id" => "YhC9FJUY03km13UWybCJ",
                     "author" => "Beng",
                     "content" => "Crimereads",
@@ -102,7 +102,7 @@ class DatabaseTest extends TestCase
                     "publish_date" => mktime(5,58,23,4,7,2023),
                     "title" => "Crimereads Title 1"
                 ),
-                "article2" => array(
+                array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
                     "author" => "Beng",
                     "content" => "Crimereads",
@@ -118,23 +118,25 @@ class DatabaseTest extends TestCase
     }
     public function testGetNoArticlesByID()
     {
-        $return = $this->db->getArticlesbyID("");
-
-        $expected = json_encode(array());
+        $expected = json_encode(array("articles"=>array()));
+        $return = $this->db->getArticlesbyID(json_encode(array("articles" => array())));
 
         $this->assertJsonStringEqualsJsonString($expected, $return);
     }
     public function testGetOneArticlesByID()
     {
         $get = json_encode(array(
-            array(
-                "from" => "Crimereads",
-                "id" => "vG7GatbnFqHds1SiTtnB"
+            "articles" => array(
+                array(
+                    "from" => "Crimereads",
+                    "id" => "vG7GatbnFqHds1SiTtnB"
+                )
             )
         ));
 
         $expected = json_encode(array(
-            array(
+            "articles" => array(
+                array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
                     "author" => "Beng",
                     "content" => "Crimereads",
@@ -142,46 +144,49 @@ class DatabaseTest extends TestCase
                     "publish_date" => mktime(5,59,18,4,7,2023),
                     "title" => "Crimereads Title 2"
                 )
-            ));
+            )
+        ));
 
-        $return = $this->db->getArticles($get);
+        $return = $this->db->getArticlesbyID($get);
         $this->assertJsonStringEqualsJsonString($expected, $return);
     }
     public function testGetMultipleArticlesByID()
     {
         $get = json_encode(array(
-            array(
-                "from" => "Crimereads",
-                "id" => "vG7GatbnFqHds1SiTtnB"
-            ),
-            array(
-                "from" => "Fiction and Poetry",
-                "id" => "ex7UanwL6Pf5dWUKTw90"
+            "articles" => array(
+                array(
+                    "from" => "Crimereads",
+                    "id" => "vG7GatbnFqHds1SiTtnB"
+                ),
+                array(
+                    "from" => "Fiction and Poetry",
+                    "id" => "ex7UanwL6Pf5dWUKTw90"
+                )
             )
         ));
 
         $expected = json_encode(array(
-            array(
-                    "id" => "YhC9FJUY03km13UWybCJ",
+            "articles" => array(
+                array(
+                        "id" => "YhC9FJUY03km13UWybCJ",
+                        "author" => "Beng",
+                        "content" => "Crimereads",
+                        "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
+                        "publish_date" => mktime(5,58,23,4,7,2023),
+                        "title" => "Crimereads Title 1"
+                ),
+                array(
+                    "id" => "ex7UanwL6Pf5dWUKTw90",
                     "author" => "Beng",
-                    "content" => "Crimereads",
-                    "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
-                    "publish_date" => mktime(5,58,23,4,7,2023),
-                    "title" => "Crimereads Title 1"
-            ),
-            array(
-                "id" => "ex7UanwL6Pf5dWUKTw90",
-                "author" => "Beng",
-                "content" => "Fiction and Poetry",
-                "img_url" => "https://pediaa.com/wp-content/uploads/2021/08/Books-old-books-novels-vintage-reading-library.jpg",
-                "title" => "Fiction and Poetry Title 1"
+                    "content" => "Fiction and Poetry",
+                    "img_url" => "https://pediaa.com/wp-content/uploads/2021/08/Books-old-books-novels-vintage-reading-library.jpg",
+                    "title" => "Fiction and Poetry Title 1"
+                )
             )
         ));
 
-        $return = $this->db->getArticles($get);
+        $return = $this->db->getArticlesbyID($get);
         $this->assertJsonStringEqualsJsonString($expected, $return);
-        $return = $this->db->getArticlesbyID("");
-        $this->assertStringContainsString("articles", $return[0]);
     }
 
     public function testAddNoArticles()
