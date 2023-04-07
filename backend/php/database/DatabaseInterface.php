@@ -70,7 +70,7 @@ namespace backend\php\database;
          * @return string
          * @author Beng
          */
-        public function getArticlesByID(string $json): array;
+        public function getArticlesByID(string $json): string;
         /**
          * Use this to help with coding:
          * https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
