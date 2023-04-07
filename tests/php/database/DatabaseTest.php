@@ -51,8 +51,8 @@ class DatabaseTest extends TestCase
         $get = json_encode(array(
             "from" => "Crimereads",
             "noOfArticles" => 0,
-            "sortBy" => "date",
-            "order" => "oldest"
+            "sortBy" => "publish_date",
+            "order" => "ascending"
         ));
 
         $expected = json_encode(array("articles" => array()));
@@ -66,8 +66,8 @@ class DatabaseTest extends TestCase
         $get = json_encode(array(
             "from" => "Crimereads",
             "noOfArticles" => 1,
-            "sortBy" => "date",
-            "order" => "oldest"
+            "sortBy" => "publish_date",
+            "order" => "ascending"
         ));
 
         $content = "";
@@ -98,8 +98,8 @@ class DatabaseTest extends TestCase
         $get = json_encode(array(
             "from" => "Crimereads",
             "noOfArticles" => 2,
-            "sortBy" => "date",
-            "order" => "oldest"
+            "sortBy" => "publish_date",
+            "order" => "ascending"
         ));
 
         $content = "";
