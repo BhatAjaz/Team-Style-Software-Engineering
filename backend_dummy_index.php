@@ -53,6 +53,10 @@ $app->resolve(UserModel::class);
 $app->bind(DatabaseDriverTest::class,MySQL::class);
 $app->resolve(UserModel::class);
 
+
+
+
+
 use backend\php\database\DatabaseInterface;
 $db = $app->resolve(DatabaseInterface::class);
 print_r($db->getArticle("Articles","nRcGBJdO5l1KU"));
