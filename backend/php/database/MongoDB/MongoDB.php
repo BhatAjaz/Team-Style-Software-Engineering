@@ -2,77 +2,77 @@
 
 namespace backend\php\database\MongoDB;
 
-class MongoDB implements \backend\php\database\DatabaseInterface
+use backend\php\database\DatabaseInterface;
+use backend\php\util\Container;
+
+class MongoDB implements DatabaseInterface
 {
+    protected Client $mongoClient;
+    protected string $connectionString;
+    protected ?Container $container = null;
+
+    public function __construct()
+    {
+        $this->container = Container::getInstance();
+
+        //Set the MongoDB Atlas connection string
+        $this->connectionString = "mongodb+srv://SoftEngineerUBDJan2023Student:5rpMmgLIDCbaSdWR@lithubcluster0.kxu4yzq.mongodb.net/?retryWrites=true&w=majority";
+
+        // Create a MongoDB client with the connection string
+        $this->mongoClient = new Client($this->connectionString);
+    }
 
     /**
      * @inheritDoc
      */
-    public static function setConfig(string $config): mixed
+    public static function setConfig(string $config): MongoDB
     {
         // TODO: Implement setConfig() method.
+        $instance = new self();
+        $config = json_decode($config, false);
+        $instance->connectionString = $config->connectionString;
+
+        //Create a MongoDB client with the updated connection string
+        $instance->mongoClient = new Client($instance->connectionString);
+
+        return $instance;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getConfig(): string
-    {
-        // TODO: Implement getConfig() method.
-    }
-
-    /**
-     * @deprecated
-     * @inheritDoc
-     */
-    public function getArticle(string $articles, string $document): array
-    {
-        // TODO: Implement getArticle() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getArticles(string $json): array
-    {
-        // TODO: Implement getArticles() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getArticlesByID(string $json): string
-    {
-        // TODO: Implement getArticlesByID() method.
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function addArticles(string $json): string
     {
         // TODO: Implement addArticles() method.
     }
 
-    /**
-     * @inheritDoc
-     */
+    public function getConfig(): string
+    {
+        // TODO: Implement getConfig() method.
+    }
+
+    public function getArticle(string $articles, string $document): array
+    {
+        // TODO: Implement getArticle() method.
+    }
+
+    public function getArticles(string $json): string
+    {
+        // TODO: Implement getArticles() method.
+    }
+
+    public function getArticlesByID(string $json): string
+    {
+        // TODO: Implement getArticlesByID() method.
+    }
+
     public function moveArticles(string $json): string
     {
         // TODO: Implement moveArticles() method.
     }
 
-    /**
-     * @inheritDoc
-     */
     public function updateArticles(string $jsons): string
     {
         // TODO: Implement updateArticles() method.
     }
 
-    /**
-     * @inheritDoc
-     */
     public function deleteArticles(): string
     {
         // TODO: Implement deleteArticles() method.
