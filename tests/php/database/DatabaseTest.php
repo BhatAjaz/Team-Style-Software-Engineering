@@ -50,9 +50,7 @@ class DatabaseTest extends TestCase
     {
         $get = json_encode(array(
             "from" => "Crimereads",
-            "noOfArticles" => 0,
-            "sortBy" => "date",
-            "order" => "oldest"
+            "noOfArticles" => 0
         ));
 
         $expected = json_encode(array("articles" => array()));
@@ -65,23 +63,15 @@ class DatabaseTest extends TestCase
     {
         $get = json_encode(array(
             "from" => "Crimereads",
-            "noOfArticles" => 1,
-            "sortBy" => "date",
-            "order" => "oldest"
+            "noOfArticles" => 1
         ));
-
-        $content = "";
-        if($this->db instanceof Firestore)
-        {
-            $content = "Crimereads from Firestore";
-        }
 
         $expected = json_encode(array(
             "articles" => array(
-                "article1" => array(
+                array(
                     "id" => "YhC9FJUY03km13UWybCJ",
                     "author" => "Beng",
-                    "content" => $content,
+                    "content" => "Crimereads",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
                     "publish_date" => mktime(5,58,23,4,7,2023),
                     "title" => "Crimereads Title 1"
@@ -98,30 +88,24 @@ class DatabaseTest extends TestCase
         $get = json_encode(array(
             "from" => "Crimereads",
             "noOfArticles" => 2,
-            "sortBy" => "date",
-            "order" => "oldest"
+            "sortBy" => "publish_date",
+            "order" => "ascending"
         ));
-
-        $content = "";
-        if($this->db instanceof Firestore)
-        {
-            $content = "Crimereads from Firestore";
-        }
 
         $expected = json_encode(array(
             "articles" => array(
-                "article1" => array(
+                array(
                     "id" => "YhC9FJUY03km13UWybCJ",
                     "author" => "Beng",
-                    "content" => $content,
+                    "content" => "Crimereads",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
                     "publish_date" => mktime(5,58,23,4,7,2023),
                     "title" => "Crimereads Title 1"
                 ),
-                "article2" => array(
+                array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
                     "author" => "Beng",
-                    "content" => $content,
+                    "content" => "Crimereads",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
                     "publish_date" => mktime(5,59,18,4,7,2023),
                     "title" => "Crimereads Title 2"
@@ -134,18 +118,75 @@ class DatabaseTest extends TestCase
     }
     public function testGetNoArticlesByID()
     {
-        $return = $this->db->getArticlesbyID("");
-        $this->assertStringContainsString("articles", $return[0]);
+        $expected = json_encode(array("articles"=>array()));
+        $return = $this->db->getArticlesbyID(json_encode(array("articles" => array())));
+
+        $this->assertJsonStringEqualsJsonString($expected, $return);
     }
     public function testGetOneArticlesByID()
     {
-        $return = $this->db->getArticlesbyID("");
-        $this->assertStringContainsString("articles", $return[0]);
+        $get = json_encode(array(
+            "articles" => array(
+                array(
+                    "from" => "Crimereads",
+                    "id" => "vG7GatbnFqHds1SiTtnB"
+                )
+            )
+        ));
+
+        $expected = json_encode(array(
+            "articles" => array(
+                array(
+                    "id" => "vG7GatbnFqHds1SiTtnB",
+                    "author" => "Beng",
+                    "content" => "Crimereads",
+                    "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
+                    "publish_date" => mktime(5,59,18,4,7,2023),
+                    "title" => "Crimereads Title 2"
+                )
+            )
+        ));
+
+        $return = $this->db->getArticlesbyID($get);
+        $this->assertJsonStringEqualsJsonString($expected, $return);
     }
     public function testGetMultipleArticlesByID()
     {
-        $return = $this->db->getArticlesbyID("");
-        $this->assertStringContainsString("articles", $return[0]);
+        $get = json_encode(array(
+            "articles" => array(
+                array(
+                    "from" => "Crimereads",
+                    "id" => "vG7GatbnFqHds1SiTtnB"
+                ),
+                array(
+                    "from" => "Fiction and Poetry",
+                    "id" => "ex7UanwL6Pf5dWUKTw90"
+                )
+            )
+        ));
+
+        $expected = json_encode(array(
+            "articles" => array(
+                array(
+                        "id" => "YhC9FJUY03km13UWybCJ",
+                        "author" => "Beng",
+                        "content" => "Crimereads",
+                        "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
+                        "publish_date" => mktime(5,58,23,4,7,2023),
+                        "title" => "Crimereads Title 1"
+                ),
+                array(
+                    "id" => "ex7UanwL6Pf5dWUKTw90",
+                    "author" => "Beng",
+                    "content" => "Fiction and Poetry",
+                    "img_url" => "https://pediaa.com/wp-content/uploads/2021/08/Books-old-books-novels-vintage-reading-library.jpg",
+                    "title" => "Fiction and Poetry Title 1"
+                )
+            )
+        ));
+
+        $return = $this->db->getArticlesbyID($get);
+        $this->assertJsonStringEqualsJsonString($expected, $return);
     }
 
     public function testAddNoArticles()
