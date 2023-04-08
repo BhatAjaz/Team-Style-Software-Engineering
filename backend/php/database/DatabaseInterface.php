@@ -79,7 +79,6 @@ namespace backend\php\database;
          * Use the pseudocode in phpDoc of updateArticles() for reference
          *
          * Use $batch->set(); for this function
-         *
          * @param string $json
          * @return string
          * @author Beng
@@ -95,6 +94,7 @@ namespace backend\php\database;
          * 3. delete the old document
          *
          * note: metadata etc. would probably be lost in the process
+         * @inheritDoc
          * @param string $json
          * @return string
          * @author Beng
@@ -151,7 +151,7 @@ namespace backend\php\database;
          * @return string pass or fail message
          * @author Beng
          */
-        public function updateArticles(string $jsons): string;
+        public function updateArticles(string $json): string;
 
 
         /**
@@ -173,8 +173,13 @@ namespace backend\php\database;
          * if (current_date - delete_date)>(20days):
          *      $db->delete($document)
          *
+         *
+         * Additionally deleting a document won't remove subcollections and subdocuments from firestore
+         * Read https://firebase.google.com/docs/firestore/solutions/delete-collections#solution_delete_data_with_a_callable_cloud_function
+         * for more
+         *
          * @return string pass or fail message including info on documents deleted
          * @author Beng
          */
-        public function deleteArticles(): string;
+        public function deleteArticles(string $json): string;
     }
