@@ -55,4 +55,30 @@ $app->resolve(UserModel::class);
 
 use backend\php\database\DatabaseInterface;
 $db = $app->resolve(DatabaseInterface::class);
-print_r($db->getArticle("Articles","nRcGBJdO5l1KU"));
+
+
+$get = json_encode(array(
+    "from" => "Crimereads",
+    "noOfArticles" => 2,
+    "sortBy" => "publish_date",
+    "order" => "ascending"
+));
+print_r($db->getArticles($get));
+
+
+$update = json_encode(array(
+    "articles" => array(
+        array(
+            "to" => "TestCollection",
+            "docID" => "testDocument",
+            "content" => "updated test content"
+        ),
+        array(
+            "to" => "TestCollection 2",
+            "docID" => "testDocument 2",
+            "title" => "updated test title",
+            "content" => "updated test content"
+        )
+    )
+));
+$return = $db->updateArticles($update);
