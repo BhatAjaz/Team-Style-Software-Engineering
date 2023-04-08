@@ -12,20 +12,10 @@ namespace backend\php\database;
     interface DatabaseInterface
     {
         /**
-         * Will seldom be used but if we want to use non-default keys or projectIDs, it can be specified using this.
-         * Can also include other config info needed for the database
-         *
-         * @param string $config JSON array containing config info
-         * @return mixed return the Database Instance
+         * @return string JSON String which contains info on database
          * @author Beng
          */
-        public static function setConfig(string $config): mixed;
-
-        /**
-         * @return string JSON String which contains info on config
-         * @author Beng
-         */
-        public function getConfig(): string;
+        public function getStatus(): string;
 
         /**
          * @deprecated Only created to test if the firestore is working, DO NOT USE THIS FOR OTHER CODES

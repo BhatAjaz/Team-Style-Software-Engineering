@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 class DatabaseTest extends TestCase
 {
     private DatabaseInterface $db;
-    private mixed $databaseClientMock;
+
     /**
      * @return void
      *
@@ -30,7 +30,8 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * Mocking FirestoreClient returns is tedious and time-consuming. Use the emulator suite for Firebase. TODO: Refactor the test class to use Firebase Emulator
+     * Mocking FirestoreClient returns is tedious and time-consuming. Use the emulator suite for Firebase.
+     * TODO: Refactor the test class to use Firebase Emulator
      * @return void
      */
 //    protected function firebaseMocking()
@@ -39,28 +40,12 @@ class DatabaseTest extends TestCase
 //        return $databaseClientMock;
 //    }
 
-    public function testGetConfig()
+    public function testGetStatus(): void
     {
-        $testConfig = json_encode(array());
-
-        if($this->db instanceof Firestore)
-        {
-            $testConfig = json_encode(array(
-                "db" => "firestore",
-                "keyPath" => "/keys/zz-2204websiteproject-cbac90c118c2.json",
-                "projectID" => "zz-2204websiteproject"
-            ));
-        }
-
-        $jsonObj = $this->db->getConfig();
-
-        $this->assertJsonStringEqualsJsonString($testConfig, $jsonObj);
+        $return = $this->db->getStatus();
+        $this->assertJson($return);
     }
 
-    public function testSetConfig()
-    {
-        //TODO: write test for setConfig()
-    }
     public function testGetNoArticles()
     {
         $get = json_encode(array(

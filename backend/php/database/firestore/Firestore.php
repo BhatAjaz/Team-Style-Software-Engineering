@@ -27,39 +27,12 @@
      }
 
      /**
-      * @param string $config
-      * @return Firestore
-      * @throws GoogleException
-      * @author Beng
-      */
-     public static function setConfig(string $config): Firestore
-    {
-        $instance = new self();
-
-        $config = json_decode($config, false);
-        $instance->keyPath = $config->keyPath;
-        $instance->projectID = $config->projectID;
-
-        $instance->firestoreClient = new FirestoreClient([
-            "keyFilePath" => $instance->keyPath,
-            "projectId" => $instance->projectID,
-        ]);
-
-        return $instance;
-    }
-
-     /**
       * @return string
       * @author Beng
       */
-     public function getConfig(): string
+     public function getStatus(): string
      {
-         $config = array(
-             "db" => "firestore",
-             "keyPath" => $this->keyPath,
-             "projectID" => $this->projectID
-         );
-         return json_encode($config);
+         return json_encode(array("message" => "I am a Firestore database :>"));
      }
 
      /**
