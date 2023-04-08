@@ -30,7 +30,7 @@
 Ask backend team for password to Firebase and MongoDB Account.
 
 
-#Free IDE Student License:
+**Free IDE Student License:**
 https://www.jetbrains.com/community/education/#students
 
 #PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version below
@@ -45,16 +45,17 @@ https://www.jetbrains.com/community/education/#students
  9. Setup composer by running 'composer install' in terminal
  9. Setup auto-testing before commits
 
-#PHP Styleguide:
+**Guides and Documentations**
+PHP Styleguide:
 https://codeigniter.com/userguide3/general/styleguide.html#php-style-guide
 
-#Autoloader standards:
+Autoloader standards:
 https://www.php-fig.org/psr/psr-4/
 
-#Firestore Documentation:
+Firestore Documentation:
 https://firebase.google.com/docs/firestore
  
-#Homework for backend team:
+**Homework for backend team:**
 PHP Autoloading Using Namespaces - Easy and Simple!
 https://www.youtube.com/watch?v=f46svjvMNI4
 
