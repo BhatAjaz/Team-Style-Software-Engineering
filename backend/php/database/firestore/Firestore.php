@@ -75,6 +75,7 @@
 
          $articles = array();
 
+         print_r($documents);
          foreach ($documents as $document) {
              if ($document->exists()) {
                  $article = array();
