@@ -8,38 +8,23 @@
  use Google\Cloud\Firestore\FirestoreClient;
  use Google\Cloud\Firestore\DocumentSnapshot;
 
+ const ARTICLE_ROOT = "Articles";
+ const ARTICLE_SUB_COLLECTION = "Articles";
+
  /**
   *
   * @author Beng
   */
  class Firestore implements DatabaseInterface
  {
-    protected FirestoreClient $firestoreClient;
-    protected string $keyPath = "/keys/zz-2204websiteproject-cbac90c118c2.json";
-    protected string $projectID = "zz-2204websiteproject";
-
-    protected ?Container $container = null;
-
-
-    protected string $rootCollection = "Articles";
-    protected string $articleSubCollection = "Articles";
-
 
      /**
       * @throws GoogleException
       * @author Beng
       */
-     public function __construct()
-    {
-            $this->container = Container::getInstance();
+     public function __construct(protected FirestoreClient $firestoreClient){
 
-            $this->firestoreClient = new FirestoreClient([
-                "keyFilePath" => __DIR__ . $this->keyPath,
-                "projectId" => $this->projectID,
-            ]);
-
-
-    }
+     }
 
      /**
       * @param string $config
@@ -98,33 +83,16 @@
      {
          $jsonArr = json_decode($json,true);
 
-         $ref = $this->firestoreClient->collection($this->rootCollection)->document($jsonArr['from'])->collection($this->articleSubCollection);
+         $ref = $this->firestoreClient->collection(ARTICLE_ROOT."/".$jsonArr['from']."/".ARTICLE_SUB_COLLECTION);
 
-         if(array_key_exists('noOfArticles',$jsonArr))
-         {
-             $noArticles = $jsonArr['noOfArticles'];
-         }
-         else
-         {
-             $noArticles = 5;
-         }
+         if(array_key_exists('noOfArticles',$jsonArr)){
+             $noArticles = $jsonArr['noOfArticles'];}else{$noArticles = 5;}
 
-         if(array_key_exists('sortBy',$jsonArr))
-         {
-             $sortBy = $jsonArr['sortBy'];
-         }
-         else
-         {
-             $sortBy = "title";
-         }
-         if(array_key_exists('order',$jsonArr) && $jsonArr['order'] == "descending")
-         {
-             $order = 'DESC';
-         }
-         else
-         {
-             $order = 'ASC';
-         }
+         if(array_key_exists('sortBy',$jsonArr)){
+             $sortBy = $jsonArr['sortBy'];}else{$sortBy = "title";}
+
+         if(array_key_exists('order',$jsonArr) && $jsonArr['order'] == "descending"){
+             $order = 'DESC';}else{$order = 'ASC';}
 
          $query = $ref
              ->orderBy($sortBy, $order)
@@ -134,12 +102,12 @@
 
          $articles = array();
 
+         print_r($documents);
          foreach ($documents as $document) {
              if ($document->exists()) {
                  $article = array();
                  $article['id'] = $document->id();
                  $article = array_merge($article,$document->data());
-
                  $articles[] = $article;
              } else {
                  printf('Document %s does not exist!' . PHP_EOL, $document->id());

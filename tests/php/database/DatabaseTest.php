@@ -5,12 +5,13 @@ namespace php\database;
 use backend\php\database\DatabaseInterface;
 use backend\php\database\firestore\Firestore;
 use backend\php\util\Container;
+use Google\Cloud\Firestore\FirestoreClient;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseTest extends TestCase
 {
     private DatabaseInterface $db;
-
+    private mixed $databaseClientMock;
     /**
      * @return void
      *
@@ -21,8 +22,22 @@ class DatabaseTest extends TestCase
         $container = Container::getInstance();
         $this->db = $container->resolve(DatabaseInterface::class);
 
+//        if($this->db instanceof Firestore){
+//            $this->db = new Firestore($this->firebaseMocking());
+//        }
+
 
     }
+
+    /**
+     * Mocking FirestoreClient returns is tedious and time-consuming. Use the emulator suite for Firebase. TODO: Refactor the test class to use Firebase Emulator
+     * @return void
+     */
+//    protected function firebaseMocking()
+//    {
+//        $databaseClientMock = $this->createMock(FirestoreClient::class);
+//        return $databaseClientMock;
+//    }
 
     public function testGetConfig()
     {
@@ -198,6 +213,13 @@ class DatabaseTest extends TestCase
 
     public function testAddOneArticles()
     {
+        if ($this->db instanceof Firestore){
+            $firestore = $this->createMock(FirestoreClient::class);
+
+
+
+
+        }
 
         $return = $this->db->addArticles("");
         $this->assertStringContainsString("articles", $return);
