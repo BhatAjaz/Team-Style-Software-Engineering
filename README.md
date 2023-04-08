@@ -31,9 +31,12 @@ Ask backend team for password to Firebase and MongoDB Account.
 
 
 **Free IDE Student License:**
+
 https://www.jetbrains.com/community/education/#students
 
-#PHP IDE setup: MAKE SURE THE VERSION ARE ALL COMPATITABLE or follow my version below
+**PHP IDE setup:**
+
+MAKE SURE THE VERSION ARE ALL COMPATITABLE or just follow my versions below
  1. Install PHPStorm IDE
  2. Install XAMPP PHP 8.1.12
  3. Install Xdebug (Use the wizard)
@@ -46,6 +49,7 @@ https://www.jetbrains.com/community/education/#students
  9. Setup auto-testing before commits
 
 **Guides and Documentations**
+
 PHP Styleguide:
 https://codeigniter.com/userguide3/general/styleguide.html#php-style-guide
 
@@ -56,6 +60,7 @@ Firestore Documentation:
 https://firebase.google.com/docs/firestore
  
 **Homework for backend team:**
+
 PHP Autoloading Using Namespaces - Easy and Simple!
 https://www.youtube.com/watch?v=f46svjvMNI4
 
