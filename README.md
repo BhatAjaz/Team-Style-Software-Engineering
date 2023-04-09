@@ -95,3 +95,5 @@ https://www.youtube.com/watch?v=HOVWXa7HBZY
 Rest API
 
 https://www.allphptricks.com/create-and-consume-simple-rest-api-in-php/
+
+https://developer.okta.com/blog/2019/03/08/simple-rest-api-php#implement-the-php-rest-api
