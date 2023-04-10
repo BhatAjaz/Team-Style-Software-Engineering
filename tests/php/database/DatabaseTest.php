@@ -116,6 +116,15 @@ class DatabaseTest extends TestCase
         $return = $this->db->getArticles($get);
         $this->assertJsonStringEqualsJsonString($expected, $return);
     }
+    public function testNoLimitGetArticles()
+    {
+        $get = json_encode(array(
+            "from" => "Crimereads"
+        ));
+
+        $return = $this->db->getArticles($get);
+        $this->assertJson($return);
+    }
     public function testGetNoArticlesByID()
     {
         $expected = json_encode(array("articles" => array()));
