@@ -2,25 +2,22 @@
 
 return [
     'endpoints' => [
-        '/api/gettest' => [
-          'GET' => 'getArticlesActionDummy'
-        ],
         '/api/articles/get' => [
             //Our function has the option to do lengthy requests
             //which would clutter the url if we use GET, so our "GET" request is converted
             //to a POST instead.
-            'POST' => 'getArticlesAction'
+            'POST' => 'getArticles'
         ],
         '/api/articles' => [
-            'POST' => 'addArticlesAction'
+            'POST' => 'addArticles'
         ],
         '/api/articles/id/get' =>[
             //Same here
-            'POST' => 'getArticlesByIDAction'
+            'POST' => 'getArticlesByID'
         ],
         '/api/articles/id' => [
-            'PUT' => 'updateArticlesByIDAction',
-            'DELETE' => 'deleteArticlesByIDAction'
+            'PUT' => 'updateArticles',
+            'DELETE' => 'deleteArticles'
         ]
     ]
 ];

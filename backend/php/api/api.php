@@ -20,31 +20,32 @@
 
 require_once '../../../backend/php/util/bootstrap.php';
 
-$endpoints = require PROJECT_ROOT_PATH . '/backend/php/api/endpoints.php';
-
 use backend\php\util\Container;
 use backend\php\api\RequestResolverInterface;
 
-$request_method = $_SERVER['REQUEST_METHOD'];
-$request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$endpoints = require PROJECT_ROOT_PATH . '/backend/php/api/endpoints.php';
+
 $container = Container::getInstance();
 $resolver = $container->resolve(RequestResolverInterface::class);
+
+$request_method = $_SERVER['REQUEST_METHOD'];
+$request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
 foreach($endpoints['endpoints'] as $endpoint => $methods){
     if($request_uri == $endpoint){
         //the requested endpoint exists
         foreach ($methods as $method => $function){
             if($request_method == $method){
                 //requested method exists
-                $resolver->{$function}();
+                $resolver->resolve($function);
                 break;
             }
         }
         http_response_code(400);
-        echo json_encode(['error' => 'Invalid request']);;
+        echo json_encode(['error' => 'Invalid request']);
         break;
     }
 }
 
-// If the endpoint and/or request method is not supported, return an error response
 http_response_code(404);
 echo json_encode(['error' => 'Endpoint not found']);
