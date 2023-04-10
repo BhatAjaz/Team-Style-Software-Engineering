@@ -28,6 +28,12 @@ namespace backend\php\database;
         public function getArticle(string $articles, string $document): array;
 
         /**
+         * TODO: Refactor the function so that users can specify the slice of the articles they want
+         * e.g. I want articles 1-10 based on publish date,
+         * user clicked page2 so I want to get the next 10 articles based on publish date,
+         * For firebase: https://cloud.google.com/firestore/docs/query-data/query-cursors#add_a_simple_cursor_to_a_query
+         *
+         *
          * https://firebase.google.com/docs/firestore/query-data/get-data
          * $json contains info on where to read the articles from
          *  such as category: news

@@ -64,21 +64,3 @@ $get = json_encode(array(
     "order" => "ascending"
 ));
 print_r($db->getArticles($get));
-
-
-$update = json_encode(array(
-    "articles" => array(
-        array(
-            "to" => "TestCollection",
-            "docID" => "testDocument",
-            "content" => "updated test content"
-        ),
-        array(
-            "to" => "TestCollection 2",
-            "docID" => "testDocument 2",
-            "title" => "updated test title",
-            "content" => "updated test content"
-        )
-    )
-));
-$return = $db->updateArticles($update);
