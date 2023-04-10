@@ -11,15 +11,5 @@ namespace backend\php\api;
  */
 interface RequestResolverInterface
 {
-    // '/api/articles/get'
-    public function getArticlesAction();
-    public function getArticlesActionDummy();
-    // '/api/articles'
-    public function addArticlesAction();
-
-    // '/api/articles/id/get'
-    public function getArticlesByIDAction();
-    // '/api/articles/id'
-    public function updateArticlesByIDAction();
-    public function deleteArticlesByIDAction();
+    public function resolve($function);
 }
