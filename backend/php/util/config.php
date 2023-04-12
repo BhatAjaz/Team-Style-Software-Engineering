@@ -1,13 +1,17 @@
 <?php
 /**
+ * Contains information linking interface files to their corresponding classes
  *
+ * This linking can also include information on how the class instance is to be constructed
+ * as seen by the Firestore linking
  * @author Beng
  */
 
 use Google\Cloud\Firestore\FirestoreClient;
 
-//Loops until we successfully get a FirestoreClient
 $firestoreClient = null;
+
+//Loops until we successfully get a FirestoreClient instance
 while(!$firestoreClient instanceof FirestoreClient){
     try {
         $firestoreClient = new FirestoreClient([
@@ -16,7 +20,7 @@ while(!$firestoreClient instanceof FirestoreClient){
         ]);
     } catch (\Google\Cloud\Core\Exception\GoogleException $e) {}
 
-    //Wait 1 sec and try again
+    //Wait 1 sec and try again if it fails
     if(!$firestoreClient instanceof FirestoreClient){
         sleep(1);
     }

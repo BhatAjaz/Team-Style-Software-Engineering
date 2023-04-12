@@ -4,7 +4,6 @@ namespace backend\php\api\database;
 
 use backend\php\api\BaseController;
 use backend\php\database\DatabaseInterface;
-use backend\php\util\Container;
 use Error;
 
 class ArticleController extends BaseController implements ArticleControllerInterface
@@ -19,6 +18,7 @@ class ArticleController extends BaseController implements ArticleControllerInter
     /**
      * @inheritDoc
      * @return void
+     * @author Beng
      */
     public function callArticlesDatabase($function):void{
         try {

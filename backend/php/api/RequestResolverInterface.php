@@ -3,13 +3,17 @@
 namespace backend\php\api;
 
 /**
- * Resolves the function calls for the api.php
- *
- * This class is the middleman that will link all the different controllers to the api
- *
- * Must include all the functions found in the endpoints.php
+ * Resolver for API requests
+ * This class is the middleman that will link all valid endpoints to all the different controller classes
+ * @author Beng
  */
 interface RequestResolverInterface
 {
-    public function resolve($function);
+
+    /**
+     *
+     * The function responsible for choosing the correct class.
+     * @param $function string The function to be called
+     */
+    public function resolve(string $function);
 }

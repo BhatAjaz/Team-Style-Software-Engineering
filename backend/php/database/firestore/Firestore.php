@@ -3,31 +3,27 @@
  namespace backend\php\database\firestore;
 
  use backend\php\database\DatabaseInterface;
- use backend\php\util\Container;
- use Google\Cloud\Core\Exception\GoogleException;
  use Google\Cloud\Firestore\FirestoreClient;
- use Google\Cloud\Firestore\DocumentSnapshot;
 
  const ARTICLE_ROOT = "Articles";
  const ARTICLE_SUB_COLLECTION = "Articles";
 
  /**
-  *
+  * Firestore implementation of the DatabaseInterface
   * @author Beng
   */
  class Firestore implements DatabaseInterface
  {
 
      /**
-      * @throws GoogleException
+      * @param FirestoreClient $firestoreClient the firestore instance used to communicate with our database
       * @author Beng
       */
      public function __construct(protected FirestoreClient $firestoreClient){
-
      }
 
      /**
-      * @return string
+      * @return string Json response that details the status of the Firestore database
       * @author Beng
       */
      public function getStatus(): string
@@ -36,21 +32,8 @@
      }
 
      /**
-      * @deprecated Only created to test if the firestore is working, DO NOT USE THIS FOR OTHER CODES
-      *
-      * @param string $articles
-      * @param string $document
-      * @return array
+      * @inheritDoc
       * @author Beng
-      */
-     public function getArticle(string $articles, string $document): array
-    {
-        return $this->firestoreClient->collection($articles)->document($document)->snapshot()->data();
-    }
-
-     /**
-      * @param string $json
-      * @return array
       */
      public function getArticles(string $json): string
      {
@@ -91,8 +74,8 @@
      }
 
      /**
-      * @param string $json
-      * @return string
+      * @inheritDoc
+      * @author Beng
       */
      public function getArticlesByID(string $json): string
      {
@@ -115,26 +98,26 @@
      }
 
      /**
-      *
       * @inheritDoc
-      * @param string $json
-      * @return string
+      * @author Beng
       */
      public function addArticles(string $json): string
      {
          $jsonArr = json_decode($json,true);
          $batch = $this->firestoreClient->bulkWriter();
 
-         //variable here is only used for testing TODO: Remove when we have better unit tests
+         //variable here is only used for testing
+         // TODO: Remove when we have better unit tests
          $added = 0;
 
          if (! empty($jsonArr['articles'])){
-             //unsets 'from' and 'id' after using it so it won't be saved to the articles we're creating
+             //unsets 'from' and 'id' after using it, so it won't be saved to the articles we're creating
              foreach ($jsonArr['articles'] as $article){
                  $ref = $this->firestoreClient->collection(ARTICLE_ROOT."/".$article['from']."/".ARTICLE_SUB_COLLECTION);
                  unset($article['from']);
 
-                 //it's expected for the most common requests to not have id so it goes first. will maybe improve performance by 0.000001% for most uses
+                 //it's expected for the most common requests to not have id, so it goes first.
+                 //will maybe improve performance by 0.000001% for most users
                  if(!array_key_exists('id', $article)){
                      $ref = $ref->newDocument();
                  }else{
@@ -142,44 +125,43 @@
                      unset($article['id']);
                      $ref = $ref->document($id);
                  }
+                 //TODO: could set merge true,
+                 // so it won't replace the whole document
+                 // if an old document with same ID exists
+                 // e.g.    $cityRef->set('capital' => true], ['merge' => true]);
                  $batch->set($ref, $article);
                  $added = $added + 1;
-//       could set merge true so it won't replace the whole document if an old document with same ID exists
-//       $cityRef->set('capital' => true], ['merge' => true]);
              }
-
              $batch->commit();
          }
-         return "added " . $added . " article(s)";
+         return json_encode(array("result message" =>"added " . $added . " article(s)"));
      }
 
      /**
-      *
-      * moving articles around firestore collections is not natively supported, the workaround is kind-of unwieldy, so let's not code for this unless really needed
-      *
-      * @param string $json
-      * @return string
+      * @inheritDoc
       */
      public function moveArticles(string $json): string
      {
             // TODO: Implement moveArticles() method.
-             return "moved articles";
+             return json_encode(array("result message" => "moved articles not implemented"));
      }
 
      /**
-      * @param string $json
-      * @return string
+      * @inheritDoc
+      * @author Beng
       */
      public function updateArticles(string $json): string
      {
          $jsonArr = json_decode($json,true);
          $batch = $this->firestoreClient->bulkWriter();
 
-         //variable here is only used for testing TODO: Remove when we have better unit tests
+         //variable here is only used for testing
+         // TODO: Remove when we have better unit tests
          $updated = 0;
 
          if (! empty($jsonArr['articles'])){
-             //unsets 'from' and 'id' after using it so it won't be saved to the articles we're creating
+             //unsets 'from' and 'id' after using it,
+             // so it won't be saved to the articles we're updating
              foreach ($jsonArr['articles'] as $article){
                  $ref = $this->firestoreClient
                      ->collection(ARTICLE_ROOT."/".$article['from']."/".ARTICLE_SUB_COLLECTION)
@@ -199,18 +181,20 @@
              }
              $batch->commit();
          }
-         return "updated " . $updated . " article(s)";
+         return json_encode(array("updated " . $updated . " article(s)"));
      }
 
      /**
-      * @return string
+      * @inheritDoc
+      * @author Beng
       */
      public function deleteArticles(string $json): string
      {
          $jsonArr = json_decode($json,true);
          $batch = $this->firestoreClient->bulkWriter();
 
-         //variable here is only used for testing TODO: Remove when we have better unit tests
+         //variable here is only used for testing
+         // TODO: Remove when we have better unit tests
          $deleted = 0;
 
          if (! empty($jsonArr['articles'])){
@@ -224,6 +208,6 @@
              }
              $batch->commit();
          }
-         return "deleted " . $deleted . " article(s)";
+         return json_encode(array("deleted " . $deleted . " article(s)"));
      }
  }
