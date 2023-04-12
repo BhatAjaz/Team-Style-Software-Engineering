@@ -5,6 +5,13 @@ namespace backend\php\api;
 use backend\php\util\Container;
 use JetBrains\PhpStorm\NoReturn;
 
+/**
+ * Base Controller class that is expected to be inherited by all future Controller classes
+ *
+ * Controller classes are classes that will take the REST API request by the client and
+ * will resolve said request by calling other functions in the backend
+ * @author Beng
+ */
 class BaseController
 {
     protected Container $container;
@@ -21,6 +28,16 @@ class BaseController
         //This is our raw json data from client
         $this->request = file_get_contents("php://input");
     }
+
+    /**
+     * This function constructs the API response to send to the client
+     *
+     * It first checks if the strErrorDesc variable is set
+     * If not, we'll send out the response data
+     * If it is, then we'll send out the error response
+     * @return void
+     * @author Beng
+     */
     #[NoReturn] protected function response():void{
         // send output
         if (!$this->strErrorDesc) {
@@ -35,16 +52,23 @@ class BaseController
         }
     }
 
+    /**
+     * controllers will use this function to set the strErrorDesc variable
+     *
+     * currently it just returns a simple string.
+     * @return string error message
+     * @author Beng
+     */
     protected function setErrorDesc(): string
     {
         return 'Something went wrong! Please contact support.';
     }
 
     /**
-     * the sendOutput method,
-     * which is used to send the API response.
-     * We’ll call this method when we want to send the API response to the user.
+     * This function is used to send the API response.
+     * response() will call this method when it wants to send the API response to the user.
      *
+     * @author Beng
      */
     #[NoReturn] protected function sendOutput($data, $httpHeaders=array()): void
     {
