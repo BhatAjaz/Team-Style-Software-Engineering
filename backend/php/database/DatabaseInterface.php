@@ -12,20 +12,10 @@ namespace backend\php\database;
     interface DatabaseInterface
     {
         /**
-         * Will seldom be used but if we want to use non-default keys or projectIDs, it can be specified using this.
-         * Can also include other config info needed for the database
-         *
-         * @param string $config JSON array containing config info
-         * @return mixed return the Database Instance
+         * @return string JSON String which contains info on database
          * @author Beng
          */
-        public static function setConfig(string $config): mixed;
-
-        /**
-         * @return string JSON String which contains info on config
-         * @author Beng
-         */
-        public function getConfig(): string;
+        public function getStatus(): string;
 
         /**
          * @deprecated Only created to test if the firestore is working, DO NOT USE THIS FOR OTHER CODES
@@ -70,7 +60,7 @@ namespace backend\php\database;
          * @return string
          * @author Beng
          */
-        public function getArticlesByID(string $json): array;
+        public function getArticlesByID(string $json): string;
         /**
          * Use this to help with coding:
          * https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
@@ -79,7 +69,6 @@ namespace backend\php\database;
          * Use the pseudocode in phpDoc of updateArticles() for reference
          *
          * Use $batch->set(); for this function
-         *
          * @param string $json
          * @return string
          * @author Beng
@@ -95,6 +84,7 @@ namespace backend\php\database;
          * 3. delete the old document
          *
          * note: metadata etc. would probably be lost in the process
+         * @inheritDoc
          * @param string $json
          * @return string
          * @author Beng
@@ -151,7 +141,7 @@ namespace backend\php\database;
          * @return string pass or fail message
          * @author Beng
          */
-        public function updateArticles(string $jsons): string;
+        public function updateArticles(string $json): string;
 
 
         /**
@@ -173,8 +163,13 @@ namespace backend\php\database;
          * if (current_date - delete_date)>(20days):
          *      $db->delete($document)
          *
+         *
+         * Additionally deleting a document won't remove subcollections and subdocuments from firestore
+         * Read https://firebase.google.com/docs/firestore/solutions/delete-collections#solution_delete_data_with_a_callable_cloud_function
+         * for more
+         *
          * @return string pass or fail message including info on documents deleted
          * @author Beng
          */
-        public function deleteArticles(): string;
+        public function deleteArticles(string $json): string;
     }
