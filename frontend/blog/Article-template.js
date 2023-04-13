@@ -59,5 +59,5 @@ function togglePreview() {
 
 function saveBtn()
 {
-  alert("Help us backend team  ;'-(\nThe button should:\nupload html to database\ncreate a new html file in this directory, named after the header (or article id?)\nnew html file should contain frontend code to get article items from the database");
+  alert("upload to database\n create new html file in directory");
 }
