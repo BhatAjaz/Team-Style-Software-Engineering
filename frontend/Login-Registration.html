@@ -33,8 +33,8 @@
       <div class="form-container login-container">
         <form action="#">
           <h1>Login here</h1>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input type="text" placeholder="Username" required/>
+          <input type="password" placeholder="Password" required/>
           <div class="content">
             <div class="checkbox">
               <input type="checkbox" name="checkbox" id="checkbox" />
@@ -45,7 +45,7 @@
             </div>
           </div>
           <button id="login-btn" onclick="login()">
-            <a href="Homepage-Admin.html">Login</a>
+            Login
           </button>
           <span> or use your account</span>
           <div class="social-container">
@@ -93,6 +93,20 @@
       loginButton.addEventListener("click", () => {
         container.classList.remove("right-panel-active");
       });
+      function login() {
+      // Get the username and password input values
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Verify username and password
+      if (username === 'admin' && password === 'admin123') {
+        // Redirect to admin homepage
+        window.location.href = "Homepage-Admin.html";
+      } else {
+        // Redirect to normal homepage
+        window.location.href = "Homepage.html";
+      }
+    }
     </script>
   </body>
 </html>
