@@ -297,7 +297,7 @@ c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>
       },
       body: JSON.stringify({
         from: "All Articles",
-        noOfArticles: 10
+        noOfArticles: 13
       })
     })
             .then(response => response.json())
@@ -312,16 +312,13 @@ c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>
 
               const articleImgUrl2 = articlesArray[1].img_url;
               const articleTitle2 = articlesArray[1].title;
-              const articleAuthor2 = articlesArray[1].author;
 
 
               const articleImgUrl3 = articlesArray[2].img_url;
               const articleTitle3 = articlesArray[2].title;
-              const articleAuthor3 = articlesArray[2].author;
 
               const articleImgUrl4 = articlesArray[3].img_url;
               const articleTitle4 = articlesArray[3].title;
-              const articleAuthor4 = articlesArray[3].author;
 
 
               const articleImgUrl5 = articlesArray[4].img_url;
@@ -348,6 +345,18 @@ c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>
               const articleTitle10 = articlesArray[9].title;
               const articleAuthor10 = articlesArray[9].author;
 
+              const articleImgUrl11 = articlesArray[10].img_url;
+              const articleTitle11 = articlesArray[10].title;
+              const articleAuthor11 = articlesArray[10].author;
+
+              const articleImgUrl12 = articlesArray[11].img_url;
+              const articleTitle12 = articlesArray[11].title;
+              const articleAuthor12 = articlesArray[11].author;
+
+              const articleImgUrl13 = articlesArray[12].img_url;
+              const articleTitle13 = articlesArray[12].title;
+              const articleAuthor13 = articlesArray[12].author;
+
               // Set the text content of the <h1> elements to the article titles\
 
               document.getElementById("article-image-1").src = articleImgUrl1;
@@ -356,17 +365,14 @@ c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>
 
               document.getElementById("article-image-2").src = articleImgUrl2;
               document.getElementById("article-name-2").textContent = articleTitle2;
-              document.getElementById("article-author-2").textContent = articleAuthor2;
 
 
               document.getElementById("article-image-3").src = articleImgUrl3;
               document.getElementById("article-name-3").textContent = articleTitle3;
-              document.getElementById("article-author-3").textContent = articleAuthor3;
 
 
               document.getElementById("article-image-4").src = articleImgUrl4;
               document.getElementById("article-name-4").textContent = articleTitle4;
-              document.getElementById("article-author-4").textContent = articleAuthor4;
 
 
               document.getElementById("article-image-5").src = articleImgUrl5;
@@ -392,6 +398,18 @@ c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"></path></svg></span>
               document.getElementById("article-image-10").src = articleImgUrl10;
               document.getElementById("article-name-10").textContent = articleTitle10;
               document.getElementById("article-author-10").textContent = articleAuthor10;
+
+              document.getElementById("article-image-11").src = articleImgUrl11;
+              document.getElementById("article-name-11").textContent = articleTitle11;
+              document.getElementById("article-author-11").textContent = articleAuthor11;
+
+              document.getElementById("article-image-12").src = articleImgUrl12;
+              document.getElementById("article-name-12").textContent = articleTitle12;
+              document.getElementById("article-author-12").textContent = articleAuthor12;
+
+              document.getElementById("article-image-13").src = articleImgUrl13;
+              document.getElementById("article-name-13").textContent = articleTitle13;
+              document.getElementById("article-author-13").textContent = articleAuthor13;
 
             })
 
