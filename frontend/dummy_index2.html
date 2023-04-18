@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch API Example</title>
+</head>
+<body>
+<h1>Fetch API Example</h1>
+<button id="fetch-btn">Fetch Data</button>
+<div id="response-container"></div>
+
+<script>
+    const fetchBtn = document.getElementById('fetch-btn');
+    const responseContainer = document.getElementById('response-container');
+
+    fetchBtn.addEventListener('click', () => {
+        fetch('/api/articles/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                from: "Crimereads"
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                responseContainer.innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error(error);
+                responseContainer.innerText = 'An error occurred while fetching the data.';
+            });
+    });
+</script>
+</body>
+</html>
