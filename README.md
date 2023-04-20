@@ -1,4 +1,4 @@
-### TEAM STYLE
+### FrontEnd
 
 [deployment page](https://accedie-xcd.github.io/Team-Style-Software-Engineering/)
 
@@ -14,21 +14,9 @@
 
 **Wee**
 
-##We do the thing that people see
-
-
-
-
-
-
-
-
-
-
 ## Backend Notes
 
 Ask backend team for password to Firebase and MongoDB Account.
-
 
 **Free IDE Student License:**
 
@@ -37,16 +25,17 @@ https://www.jetbrains.com/community/education/#students
 **PHP IDE setup:**
 
 MAKE SURE THE VERSION ARE ALL COMPATITABLE or just follow my versions below
- 1. Install PHPStorm IDE
- 2. Install XAMPP PHP 8.1.12
- 3. Install Xdebug (Use the wizard)
- 4. Install Composer (use installer)
- 5. Install gRPC 1.43.0
- 6. Connect to the GitHub project through PHPStorm
- 7. Integrate XAMPP with IDE
- 8. Setup IDE Interpreter
- 9. Setup composer by running 'composer install' in terminal
- 9. Setup auto-testing before commits
+
+1.  Install PHPStorm IDE
+2.  Install XAMPP PHP 8.1.12
+3.  Install Xdebug (Use the wizard)
+4.  Install Composer (use installer)
+5.  Install gRPC 1.43.0
+6.  Connect to the GitHub project through PHPStorm
+7.  Integrate XAMPP with IDE
+8.  Setup IDE Interpreter
+9.  Setup composer by running 'composer install' in terminal
+10. Setup auto-testing before commits
 
 **Guides and Documentations**
 
@@ -61,7 +50,7 @@ https://www.php-fig.org/psr/psr-4/
 Firestore Documentation:
 
 https://firebase.google.com/docs/firestore
- 
+
 **Homework for backend team:**
 
 PHP Autoloading Using Namespaces - Easy and Simple!

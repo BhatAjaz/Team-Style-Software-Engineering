@@ -1,6 +1,7 @@
-window.onload() = function () {
+window.onload = function () {
   const artName = document.getElementById("article-name-5");
 
+  console.log("start fetch");
   fetch('/api/articles/get', {
     method: 'POST',
     headers: {
