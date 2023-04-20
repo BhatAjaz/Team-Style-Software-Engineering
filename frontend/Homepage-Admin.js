@@ -1,4 +1,4 @@
-window.onload() = function () {
+window.onload = function () {
   const artName = document.getElementById("article-name-5");
 
   fetch('/api/articles/get', {
