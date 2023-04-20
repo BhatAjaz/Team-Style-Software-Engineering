@@ -59,5 +59,5 @@ function togglePreview() {
 
 function saveBtn()
 {
-  alert("upload to database\n create new html file in directory");
+  alert("upload to database");
 }
