@@ -111,11 +111,10 @@
         // Verify username and password
         if (username === "admin" && password === "admin123") {
           // Redirect to admin homepage
-          console.log("goto admin");
-          window.location.href = "Homepage-Admin.html";
+
+          location.replace("Homepage-Admin.html");
         } else {
           // Redirect to normal homepage
-          console.log("goto normie");
           location.replace("Homepage.html");
         }
       }
