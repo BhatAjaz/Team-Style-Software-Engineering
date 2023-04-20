@@ -33,8 +33,18 @@
       <div class="form-container login-container">
         <form action="#">
           <h1>Login here</h1>
-          <input type="text" placeholder="Username" required/>
-          <input type="password" placeholder="Password" required/>
+          <input
+            id="login-username"
+            type="text"
+            placeholder="Username"
+            required
+          />
+          <input
+            id="login-password"
+            type="password"
+            placeholder="Password"
+            required
+          />
           <div class="content">
             <div class="checkbox">
               <input type="checkbox" name="checkbox" id="checkbox" />
@@ -44,9 +54,7 @@
               <a href="#">Forgot password?</a>
             </div>
           </div>
-          <button id="login-btn" onclick="login()">
-            Login
-          </button>
+          <button id="login-btn" onclick="login()">Login</button>
           <span> or use your account</span>
           <div class="social-container">
             <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
@@ -94,19 +102,23 @@
         container.classList.remove("right-panel-active");
       });
       function login() {
-      // Get the username and password input values
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+        event.preventDefault();
+        // Get the username and password input values
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
 
-      // Verify username and password
-      if (username === 'admin' && password === 'admin123') {
-        // Redirect to admin homepage
-        window.location.href = "Homepage-Admin.html";
-      } else {
-        // Redirect to normal homepage
-        window.location.href = "Homepage.html";
+        console.log(username + "     " + password);
+        // Verify username and password
+        if (username === "admin" && password === "admin123") {
+          // Redirect to admin homepage
+          console.log("goto admin");
+          window.location.href = "Homepage-Admin.html";
+        } else {
+          // Redirect to normal homepage
+          console.log("goto normie");
+          location.replace("Homepage.html");
+        }
       }
-    }
     </script>
   </body>
 </html>
