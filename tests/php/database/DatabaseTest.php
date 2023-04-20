@@ -3,49 +3,32 @@
 namespace php\database;
 
 use backend\php\database\DatabaseInterface;
-use backend\php\database\firestore\Firestore;
 use backend\php\util\Container;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @author Beng
+ */
 class DatabaseTest extends TestCase
 {
     private DatabaseInterface $db;
 
-    /**
-     * @return void
-     *
-     * @author Beng
-     */
+
     protected function setUp(): void
     {
         $container = Container::getInstance();
         $this->db = $container->resolve(DatabaseInterface::class);
-
-
     }
 
-    public function testGetConfig()
+    //Mocking FirestoreClient returns is tedious and time-consuming. Use the emulator suite for Firebase.
+    //TODO: Refactor the test class to use Firebase Emulator
+
+    public function testGetStatus(): void
     {
-        $testConfig = json_encode(array());
-
-        if($this->db instanceof Firestore)
-        {
-            $testConfig = json_encode(array(
-                "db" => "firestore",
-                "keyPath" => "/keys/zz-2204websiteproject-cbac90c118c2.json",
-                "projectID" => "zz-2204websiteproject"
-            ));
-        }
-
-        $jsonObj = $this->db->getConfig();
-
-        $this->assertJsonStringEqualsJsonString($testConfig, $jsonObj);
+        $return = $this->db->getStatus();
+        $this->assertJson($return);
     }
 
-    public function testSetConfig()
-    {
-        //TODO: write test for setConfig()
-    }
     public function testGetNoArticles()
     {
         $get = json_encode(array(
@@ -68,7 +51,7 @@ class DatabaseTest extends TestCase
 
         $expected = json_encode(array(
             "articles" => array(
-                array(
+                "YhC9FJUY03km13UWybCJ" => array(
                     "id" => "YhC9FJUY03km13UWybCJ",
                     "title" => "Crimereads Title 1",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
@@ -94,7 +77,7 @@ class DatabaseTest extends TestCase
 
         $expected = json_encode(array(
             "articles" => array(
-                array(
+                "YhC9FJUY03km13UWybCJ" => array(
                     "id" => "YhC9FJUY03km13UWybCJ",
                     "title" => "Crimereads Title 1",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
@@ -102,7 +85,7 @@ class DatabaseTest extends TestCase
                     "publish_date" => "2023-04-07T09:58:23.687000Z",
                     "content" => "Crimereads"
                 ),
-                array(
+                "vG7GatbnFqHds1SiTtnB" => array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
                     "title" => "Crimereads Title 2",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
@@ -116,10 +99,23 @@ class DatabaseTest extends TestCase
         $return = $this->db->getArticles($get);
         $this->assertJsonStringEqualsJsonString($expected, $return);
     }
+    public function testNoLimitGetArticles()
+    {
+        $get = json_encode(array(
+            "from" => "Crimereads"
+        ));
+
+        $return = $this->db->getArticles($get);
+        $this->assertJson($return);
+    }
     public function testGetNoArticlesByID()
     {
-        $expected = json_encode(array("articles"=>array()));
-        $return = $this->db->getArticlesbyID(json_encode(array("articles" => array())));
+        $expected = json_encode(array("articles" => array()));
+
+        $get = json_encode(array(
+            "articles" => array()
+        ));
+        $return = $this->db->getArticlesbyID($get);
 
         $this->assertJsonStringEqualsJsonString($expected, $return);
     }
@@ -136,7 +132,7 @@ class DatabaseTest extends TestCase
 
         $expected = json_encode(array(
             "articles" => array(
-                array(
+                "vG7GatbnFqHds1SiTtnB" => array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
                     "title" => "Crimereads Title 2",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
@@ -167,7 +163,7 @@ class DatabaseTest extends TestCase
 
         $expected = json_encode(array(
             "articles" => array(
-                array(
+                "vG7GatbnFqHds1SiTtnB" => array(
                     "id" => "vG7GatbnFqHds1SiTtnB",
                     "title" => "Crimereads Title 2",
                     "img_url" => "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
@@ -175,7 +171,7 @@ class DatabaseTest extends TestCase
                     "publish_date" => "2023-04-07T09:59:18.789000Z",
                     "content" => "Crimereads"
                 ),
-                array(
+                "ex7UanwL6Pf5dWUKTw90" => array(
                     "id" => "ex7UanwL6Pf5dWUKTw90",
                     "title" => "Fiction and Poetry Title 1",
                     "img_url" => "https://pediaa.com/wp-content/uploads/2021/08/Books-old-books-novels-vintage-reading-library.jpg",
@@ -191,70 +187,149 @@ class DatabaseTest extends TestCase
 
     public function testAddNoArticles()
     {
-
-        $return = $this->db->addArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $add = json_encode(array(
+            "articles" => array()
+        ));
+        $return = $this->db->addArticles($add);
+        $this->assertStringContainsString("added 0 article(s)", $return);
     }
 
     public function testAddOneArticles()
     {
+        $add = json_encode(array(
+            "articles" => array(
+                array(
+                    "from" => "TestCollection",
+                    "id" => "testDocument",
+                    "title" => "test title",
+                    "content" => "test content"
+                )
+            )
+        ));
 
-        $return = $this->db->addArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $return = $this->db->addArticles($add);
+        $this->assertStringContainsString("added 1 article(s)", $return);
     }
 
     public function testAddMultipleArticles()
     {
-
-        $return = $this->db->addArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $add = json_encode(array(
+           "articles" => array(
+               array(
+                   "from" => "TestCollection",
+                   "title" => "test title",
+                   "content" => "test content"
+               ),
+               array(
+                   "from" => "TestCollection",
+                   "id" => "testDocument 2",
+               ),
+               array(
+                   "from" => "TestCollection 2",
+                   "id" => "testDocument 2",
+                   "title" => "test title",
+                   "content" => "test content"
+               )
+           )
+        ));
+        $return = $this->db->addArticles($add);
+        $this->assertStringContainsString("added 3 article(s)", $return);
     }
 
     public function testUpdateNoArticles()
     {
-        $return = $this->db->updateArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $update = json_encode(array(
+            "articles" => array()
+        ));
+        $return = $this->db->updateArticles($update);
+        $this->assertStringContainsString("updated 0 article(s)", $return);
 
     }
 
     public function testUpdateOneArticles()
     {
-        $return = $this->db->updateArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $update = json_encode(array(
+            "articles" => array(
+                array(
+                    "from" => "TestCollection",
+                    "id" => "testDocument",
+                    "content" => "updated test content"
+                )
+            )
+        ));
+        $return = $this->db->updateArticles($update);
+        $this->assertStringContainsString("updated 1 article(s)", $return);
 
     }
 
     public function testUpdateMultipleArticles()
     {
-        $return = $this->db->updateArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $update = json_encode(array(
+            "articles" => array(
+                array(
+                    "from" => "TestCollection",
+                    "id" => "testDocument",
+                    "title" => "updated test title"
+                ),
+                array(
+                    "from" => "TestCollection 2",
+                    "id" => "testDocument 2",
+                    "title" => "updated test title",
+                    "content" => "updated test content"
+                )
+            )
+        ));
+        $return = $this->db->updateArticles($update);
+        $this->assertStringContainsString("updated 2 article(s)", $return);
 
     }
 
     public function testDeleteNoArticles()
     {
-        $return = $this->db->deleteArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $delete = json_encode(array(
+            "articles" => array()
+        ));
+        $return = $this->db->deleteArticles($delete);
+        $this->assertStringContainsString("deleted 0 article(s)", $return);
 
 
     }
 
     public function testDeleteOneArticles()
     {
-        $return = $this->db->deleteArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $delete = json_encode(array(
+            "articles" => array(
+                array(
+                    "from" => "TestCollection",
+                    "id" => "testDocument"
+                )
+            )
+        ));
+        $return = $this->db->deleteArticles($delete);
+        $this->assertStringContainsString("deleted 1 article(s)", $return);
 
 
     }
 
     public function testDeleteMultipleArticles()
     {
-        $return = $this->db->deleteArticles("");
-        $this->assertStringContainsString("articles", $return);
+        $delete = json_encode(array(
+            "articles" => array(
+                array(
+                    "from" => "TestCollection",
+                    "id" => "testDocument 2"
+                ),
+                array(
+                    "from" => "TestCollection 2",
+                    "id" => "testDocument 2"
+                )
+            )
+        ));
+        $return = $this->db->deleteArticles($delete);
+        $this->assertStringContainsString("deleted 2 article(s)", $return);
 
 
     }
-
 
     public function testMoveArticles()
     {
