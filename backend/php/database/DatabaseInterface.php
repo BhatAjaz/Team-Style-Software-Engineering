@@ -4,79 +4,191 @@
 namespace backend\php\database;
 
 /**
- * We'll be passing info using JSON so that it is more modular, hopefully
- *
- * To make this work with user authentication, maybe we can enclose the functions with an if statement to check for user privileges
+ * The database class will accept json strings and returns the results in json
  * @author Beng
  */
     interface DatabaseInterface
     {
         /**
-         * @return string JSON String which contains info on database
+         * @return string Json response that details the status of the database
          * @author Beng
          */
         public function getStatus(): string;
 
+        //TODO: Refactor the function so that users can specify the slice of the articles they want
+        // e.g. I want articles 1-10 based on publish date,
+        // user clicked page2 so I want to get the next 10 articles based on publish date,
+        // For firebase: https://cloud.google.com/firestore/docs/query-data/query-cursors#add_a_simple_cursor_to_a_query
+        // could be a separate function
+        //
+        //TODO: We could contemplate if there should be a way to only return specific fields such as title/author/etc
+        // this reduces the strain on the network strain of sending out and receiving large amounts of data
+        // could be a separate function
         /**
-         * @deprecated Only created to test if the firestore is working, DO NOT USE THIS FOR OTHER CODES
+         * Returns articles from a section based on a given query
          *
-         * @param string $articles
-         * @param string $document
-         * @return array
-         * @author Beng
-         */
-        public function getArticle(string $articles, string $document): array;
-
-        /**
-         * https://firebase.google.com/docs/firestore/query-data/get-data
-         * $json contains info on where to read the articles from
-         *  such as category: news
+         * Query fields:
+         * from: the Article Section requested
+         * (optional) noOfArticles: the number of articles to be returned
+         *      default: 5
+         * (optional) sortBy: the field used to sort the articles
+         *      default: "title"
+         * (optional) order: the order in which the articles are sorted
+         *      default: "ascending"
          *
-         * there should be a way to only return specific fields such as title/author/etc
-         * read the documentation for more
-         * this is important to improve performance, we don't want to return everything when we only want to get titles for e.g.
+         * Returns:
+         * Json array of Article arrays,
+         * Each article array will have a key associated with it based on the article's ID
+         * Article Array will contain the Article ID as its first field,
+         * subsequent fields will depend on the fields that exists in that article
          *
-         * returns an array of JSON strings, each string will represent an article including its contents
+         * e.g.
+         * Request JSON:
+         *  {
+         *      from: "Crimereads",
+         *      noOfArticles: 2,
+         *      sortBy: "publish_date",
+         *      order: "ascending"
+         *  }
          *
+         * Return JSON:
+         *  {
+         *      articles: {
+         *          YhC9FJUY03km13UWybCJ:{
+         *              id: "YhC9FJUY03km13UWybCJ",
+         *              title: "Crimereads Title 1"
+         *              img_url: "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
+         *              author: "Beng",
+         *              publish_date: "2023-04-07T09:58:23.687000Z",
+         *              content: "Crimereads"
+         *          },
+         *          vG7GatbnFqHds1SiTtnB:{
+         *              id:  "vG7GatbnFqHds1SiTtnB",
+         *              title:  "Crimereads Title 2",
+         *              img_url:  "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
+         *              author:  "Beng",
+         *              publish_date:  "2023-04-07T09:59:18.789000Z",
+         *              content:  "Crimereads"
+         *          }
+         *      }
+         *  }
          *
-         * Doing a for-loop to check for published articles will probably be time-consuming
-         *
-         * We should save the info of the published/unpublished articles in a separate collection
-         * Info should contain stuff like:
-         *      DocumentID, Address to document
-         *
-         * So we can use this list to retrieve the articles
-         *
-         * @param string $json
-         * @return array
+         * @param string $json query to get the articles
+         * @return string json containing all the requested articles
          * @author Beng
          */
         public function getArticles(string $json): string;
+
         /**
-         * https://firebase.google.com/docs/firestore/query-data/get-data
-         * json contains list of documentID and collection name to get articles from
+         * Returns articles based on article IDs given
          *
-         * @param string $json
-         * @return string
+         * Query Fields:
+         * from: The article section of the article
+         * id: The ID of the article
+         *
+         * Returns:
+         * Json array of Article arrays,
+         * Each article array will have a key associated with it based on the article's ID
+         * Article Array will contain the Article ID as its first field,
+         * subsequent fields will depend on the fields that exists in that article
+         *
+         * e.g.
+         * Request JSON:
+         *  {
+         *      articles: {
+         *          {
+         *              from: "Crimereads",
+         *              id: "vG7GatbnFqHds1SiTtnB"
+         *          },
+         *          {
+         *              from: "Fiction and Poetry",
+         *              id: "ex7UanwL6Pf5dWUKTw90"
+         *          }
+         *      }
+         *  }
+         *
+         * Return JSON:
+         *  {
+         *      articles: {
+         *          vG7GatbnFqHds1SiTtnB:{
+         *              id:  "vG7GatbnFqHds1SiTtnB",
+         *              title:  "Crimereads Title 2",
+         *              img_url:  "https://pbs.twimg.com/media/DXtHp7zXcAIlO_n?format=jpg&name=4096x4096",
+         *              author:  "Beng",
+         *              publish_date:  "2023-04-07T09:59:18.789000Z",
+         *              content:  "Crimereads"
+         *          },
+         *          ex7UanwL6Pf5dWUKTw90:{
+         *              id:  "ex7UanwL6Pf5dWUKTw90",
+         *              title:  "Fiction and Poetry Title 1",
+         *              img_url: "https://pediaa.com/wp-content/uploads/2021/08/Books-old-books-novels-vintage-reading-library.jpg",
+         *              author:  "Beng",
+         *              content:  "Fiction and Poetry"
+         *          }
+         *      }
+         *  }
+         *
+         * @param string $json query to get the articles
+         * @return string json containing all the requested articles
          * @author Beng
          */
         public function getArticlesByID(string $json): string;
+
         /**
-         * Use this to help with coding:
-         * https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
-         * https://www.w3schools.com/php/php_arrays_associative.asp
+         * Add articles based on JSON given
          *
-         * Use the pseudocode in phpDoc of updateArticles() for reference
+         * Add Articles JSON:
+         * from: The article section that the article will be added to
+         * (optional) id: The id of the new article
+         *      (not recommended because it could generate user errors if id match a pre-existing id)
+         *      default: random id generated by the database
+         * (optional others): other fields that the article will contain
          *
-         * Use $batch->set(); for this function
-         * @param string $json
-         * @return string
+         * Return:
+         * Json array with a simple array stating the number of articles added
+         * TODO: rework or remove the return
+         *
+         * e.g.
+         * Add Articles JSON:
+         *  {
+         *      articles: {
+         *          {
+         *              from: "Crimereads",
+         *              title: "New Crimereads",
+         *              content: "Newly added article"
+         *          },
+         *          {
+         *              from: "Fiction and Poetry",
+         *              title: "New Fiction and Poetry",
+         *              content: "Newly added article"
+         *          },
+         *          {
+         *              from: "Fiction and Poetry",
+         *              id: "FictionAndPoetryArticle2"
+         *              title: "New Fiction and Poetry 2",
+         *              content: "Newly added article"
+         *              author: "Beng"
+         *          }
+         *      }
+         *  }
+         *
+         * Return JSON:
+         *  {
+         *      result message: "added 3 articles"
+         *  }
+         *
+         * @param string $json Add Articles Instructions
+         * @return string json containing the result message
          * @author Beng
          */
         public function addArticles(string $json): string;
         /**
+         * moving articles around firestore collections is not natively supported,
          * Firestore has no way to easily move articles,
-         * From some research, we should probably try to work around this rather than forcefully create a function to do this
+         *
+         * From some research,
+         * we should probably try to work around this
+         * rather than forcefully create a function to do this
          *
          * A possible way to implement this would be to:
          * 1. copy the contents of the whole document,
@@ -84,7 +196,7 @@ namespace backend\php\database;
          * 3. delete the old document
          *
          * note: metadata etc. would probably be lost in the process
-         * @inheritDoc
+         *
          * @param string $json
          * @return string
          * @author Beng
@@ -92,83 +204,94 @@ namespace backend\php\database;
         public function moveArticles(string $json): string;
 
         /**
-         * Use this to help with coding:
-         * https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
-         * https://www.w3schools.com/php/php_arrays_associative.asp
+         * Update articles based on JSON given
          *
-         * Updates the articles based on the json info.
-         * Example JSONS:
+         * Update Articles JSON:
+         * from: The article section that the article is located in
+         * id: The ID of the article to be updated
+         * (optional others): other fields that will be added/changed in the article
+         *
+         * Return:
+         * Json array with a simple array stating the number of articles updated
+         * TODO: rework or remove the return
+         *
+         * e.g.
+         * Updated Articles JSON:
          *  {
-         *      [
+         *      articles: {
          *          {
-         *          "category":"news",
-         *          "articleID":"2345",
-         *          "updates": {
-         *                "Title": "new Title",
-         *                "content": "new content"
-         *          }
-         *      ],
-         *      [
+         *              from: "Crimereads",
+         *              id: "vG7GatbnFqHds1SiTtnB",
+         *              content: "Updated content"
+         *          },
          *          {
-         *          "category":"opinions",
-         *          "articleID":"5521253",
-         *          "updates": {
-         *                "Title": "new Title2",
-         *                "content": "new content 2"
+         *              from: "Fiction and Poetry",
+         *              id: "ex7UanwL6Pf5dWUKTw90",
+         *              title: "Updated title",
+         *              note: "newly added 'note' field"
          *          }
-         *      ]
-         * }
+         *      }
+         *  }
          *
-         * pseudocode:
-         * $batch = $db->batch();
-         *
-         * $jsonsArray = json_decode($jsons)
-         * for i in $jsonsArray:
+         * Return JSON:
          *  {
-         *      $arr = $jsons[i];
-         *      $address = (string) 'articles/' + $arr['category'];
-         *      $ref = $db->collection($address)->collection($arr['ArticleID']);
-         *      $batch->update($ref, [
-         *          $arr['updates']
-         *      ]);
-         * }
+         *      result message: "updated 3 articles"
+         *  }
          *
-         * $batch->commit();
-         *
-         * IMPORTANT: Test to see if your code can update nested objects
-         *
-         * @param string $jsons
-         * @return string pass or fail message
+         * @param string $json Update Articles Instructions
+         * @return string json containing the result message
          * @author Beng
          */
         public function updateArticles(string $json): string;
 
+        //TODO: To prevent accidental deletes, instead of actually deleting our documents,
+        // we can use the updateArticles() function to flip a boolean variable "deleted" from false to true
+        // then maybe if we're keen, we can create a function that periodically
+        // permanently delete documents that has been set to "deleted" for a while
+        // pseudocode:
+        //      if (current_date - delete_date)>(20days):
+        //      $db->delete($document)
 
         /**
-         * To prevent accidental deletes, instead of actually deleting our documents,
-         * we can use the updateArticles() function to flip a boolean variable "deleted" from false to true
-         * then maybe if we're keen,
-         * we can run this function periodically
-         * to permanently delete documents that has been set to "deleted" for a while
+         * Deletes articles based on JSON given
          *
-         * Doing a for-loop to check for deleted articles will be time consuming
+         * Delete Articles JSON:
+         * from: The article section that the article is located in
+         * id: The ID of the article to be deleted
          *
-         * As such, I believe when we "delete" an article,
-         * We should save the info of the "deleted" article in a separate collection
-         * Info should contain stuff like:
-         *      DocumentID, Address to document, "deletion" date, and other interesting info like user who deleted the article
+         * Return:
+         * Json array with a simple array stating the number of articles deleted
+         * TODO: rework or remove the return
          *
+         * e.g.
+         * Updated Articles JSON:
+         *  {
+         *      articles: {
+         *          {
+         *              from: "Crimereads",
+         *              id: "vG7GatbnFqHds1SiTtnB",
+         *          },
+         *          {
+         *              from: "Fiction and Poetry",
+         *              id: "ex7UanwL6Pf5dWUKTw90",
+         *          }
+         *      }
+         *  }
          *
-         * pseudocode:
-         * if (current_date - delete_date)>(20days):
-         *      $db->delete($document)
+         * Return JSON:
+         *  {
+         *      result message: "deleted 2 articles"
+         *  }
          *
+         * <b>Notes</b>
+         * <p></p>
+         * For Firestore:
+         *      Deleting a document won't remove subcollections and subdocuments from firestore
+         *      Read for more:
+         *          https://firebase.google.com/docs/firestore/solutions/delete-collections#solution_delete_data_with_a_callable_cloud_function
          *
-         * Additionally deleting a document won't remove subcollections and subdocuments from firestore
-         * Read https://firebase.google.com/docs/firestore/solutions/delete-collections#solution_delete_data_with_a_callable_cloud_function
-         * for more
-         *
-         * @return string pass or fail message including info on documents deleted
+         * @param string $json Delete Articles Instructions
+         * @return string json containing the result message
          * @author Beng
          */
         public function deleteArticles(string $json): string;

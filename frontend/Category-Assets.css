@@ -17107,11 +17107,6 @@ p {
 .u-align-left {
   text-align: left;
 }
-
-.u-align-center {
-  text-align: center;
-}
-
 @media (min-width: 1400px) {
   .u-align-left-xxl {
     text-align: left;
@@ -17147,7 +17142,9 @@ p {
     text-align: left;
   }
 }
-
+.u-align-center {
+  text-align: center;
+}
 @media (min-width: 1400px) {
   .u-align-center-xxl {
     text-align: center;
@@ -41518,11 +41515,6 @@ a.u-link.u-text-hover-grey-90:hover {
   margin: 22px auto 0;
 }
 
-.u-header .u-btn-1 {
-  background-image: none;
-  padding: 0;
-}
-
 .u-header .u-social-icons-1 {
   height: 32px;
   min-height: 16px;
@@ -41553,6 +41545,7 @@ a.u-link.u-text-hover-grey-90:hover {
 
 .u-header .u-nav-1 {
   font-size: 1rem;
+  letter-spacing: normal;
 }
 
 .u-header .u-nav-2 {
@@ -41572,10 +41565,6 @@ a.u-link.u-text-hover-grey-90:hover {
   .u-header .u-login-1 {
     margin-top: -29px;
     margin-right: calc(((100% - 940px) / 2) + -20px);
-  }
-
-  .u-header .u-nav-1 {
-    letter-spacing: normal;
   }
 }
 @media (max-width: 991px) {

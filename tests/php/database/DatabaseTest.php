@@ -3,42 +3,25 @@
 namespace php\database;
 
 use backend\php\database\DatabaseInterface;
-use backend\php\database\firestore\Firestore;
 use backend\php\util\Container;
-use Google\Cloud\Firestore\FirestoreClient;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @author Beng
+ */
 class DatabaseTest extends TestCase
 {
     private DatabaseInterface $db;
 
-    /**
-     * @return void
-     *
-     * @author Beng
-     */
+
     protected function setUp(): void
     {
         $container = Container::getInstance();
         $this->db = $container->resolve(DatabaseInterface::class);
-
-//        if($this->db instanceof Firestore){
-//            $this->db = new Firestore($this->firebaseMocking());
-//        }
-
-
     }
 
-    /**
-     * Mocking FirestoreClient returns is tedious and time-consuming. Use the emulator suite for Firebase.
-     * TODO: Refactor the test class to use Firebase Emulator
-     * @return void
-     */
-//    protected function firebaseMocking()
-//    {
-//        $databaseClientMock = $this->createMock(FirestoreClient::class);
-//        return $databaseClientMock;
-//    }
+    //Mocking FirestoreClient returns is tedious and time-consuming. Use the emulator suite for Firebase.
+    //TODO: Refactor the test class to use Firebase Emulator
 
     public function testGetStatus(): void
     {
@@ -115,6 +98,15 @@ class DatabaseTest extends TestCase
 
         $return = $this->db->getArticles($get);
         $this->assertJsonStringEqualsJsonString($expected, $return);
+    }
+    public function testNoLimitGetArticles()
+    {
+        $get = json_encode(array(
+            "from" => "Crimereads"
+        ));
+
+        $return = $this->db->getArticles($get);
+        $this->assertJson($return);
     }
     public function testGetNoArticlesByID()
     {
