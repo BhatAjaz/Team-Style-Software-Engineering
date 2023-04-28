@@ -221,7 +221,7 @@ class DatabaseTest extends TestCase
                    "content" => "test content"
                ),
                array(
-                   "from" => "TestCollection",
+                   "from" => "TestCollection 2",
                    "id" => "testDocument 2",
                ),
                array(
@@ -318,6 +318,10 @@ class DatabaseTest extends TestCase
                 array(
                     "from" => "TestCollection 2",
                     "id" => "testDocument 2"
+                ),
+                array(
+                    "from" => "TestCollection 3",
+                    "id" => "testDocument 3"
                 )
             )
         ));
