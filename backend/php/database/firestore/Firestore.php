@@ -181,7 +181,7 @@
              }
              $batch->commit();
          }
-         return json_encode(array("updated " . $updated . " article(s)"));
+         return json_encode(array("result message" => "updated " . $updated . " article(s)"));
      }
 
      /**
@@ -208,6 +208,6 @@
              }
              $batch->commit();
          }
-         return json_encode(array("deleted " . $deleted . " article(s)"));
+         return json_encode(array("result message" => "deleted " . $deleted . " article(s)"));
      }
  }

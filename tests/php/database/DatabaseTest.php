@@ -221,12 +221,12 @@ class DatabaseTest extends TestCase
                    "content" => "test content"
                ),
                array(
-                   "from" => "TestCollection",
+                   "from" => "TestCollection 2",
                    "id" => "testDocument 2",
                ),
                array(
-                   "from" => "TestCollection 2",
-                   "id" => "testDocument 2",
+                   "from" => "TestCollection 3",
+                   "id" => "testDocument 3",
                    "title" => "test title",
                    "content" => "test content"
                )
@@ -316,12 +316,12 @@ class DatabaseTest extends TestCase
         $delete = json_encode(array(
             "articles" => array(
                 array(
-                    "from" => "TestCollection",
+                    "from" => "TestCollection 2",
                     "id" => "testDocument 2"
                 ),
                 array(
-                    "from" => "TestCollection 2",
-                    "id" => "testDocument 2"
+                    "from" => "TestCollection 3",
+                    "id" => "testDocument 3"
                 )
             )
         ));
