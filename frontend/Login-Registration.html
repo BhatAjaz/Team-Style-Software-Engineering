@@ -33,8 +33,18 @@
       <div class="form-container login-container">
         <form action="#">
           <h1>Login here</h1>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input
+            id="login-username"
+            type="text"
+            placeholder="Username"
+            required
+          />
+          <input
+            id="login-password"
+            type="password"
+            placeholder="Password"
+            required
+          />
           <div class="content">
             <div class="checkbox">
               <input type="checkbox" name="checkbox" id="checkbox" />
@@ -44,9 +54,7 @@
               <a href="#">Forgot password?</a>
             </div>
           </div>
-          <button id="login-btn" onclick="login()">
-            <a href="Homepage-Admin.html">Login</a>
-          </button>
+          <button id="login-btn" onclick="login()">Login</button>
           <span> or use your account</span>
           <div class="social-container">
             <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
@@ -93,6 +101,23 @@
       loginButton.addEventListener("click", () => {
         container.classList.remove("right-panel-active");
       });
+      function login() {
+        event.preventDefault();
+        // Get the username and password input values
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
+
+        console.log(username + "     " + password);
+        // Verify username and password
+        if (username === "admin" && password === "admin123") {
+          // Redirect to admin homepage
+
+          location.replace("Homepage-Admin.html");
+        } else {
+          // Redirect to normal homepage
+          location.replace("Homepage.html");
+        }
+      }
     </script>
   </body>
 </html>
