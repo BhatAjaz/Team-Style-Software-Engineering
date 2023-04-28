@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="XAMPP PHP" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="XAMPP PHP">
+      <paths name="XAMPP PHP (project level)">
         <serverdata>
           <mappings>
             <mapping deploy="\" local="$PROJECT_DIR$" web="/" />

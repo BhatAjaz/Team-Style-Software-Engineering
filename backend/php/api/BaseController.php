@@ -9,7 +9,8 @@ use JetBrains\PhpStorm\NoReturn;
  * Base Controller class that is expected to be inherited by all future Controller classes
  *
  * Controller classes are classes that will take the REST API request by the client and
- * will resolve said request by calling other functions in the backend
+ * will resolve said request by calling the functions of the interface associated with the Controller class
+ *
  * @author Beng
  */
 class BaseController
