@@ -6,7 +6,7 @@
  * Each endpoint will have REST API methods associated with it
  * Each of the REST API method will have a function associated with it.
  *
- * Some of our functions that should've been linked to GET requests
+ * Some of our functions that should've been linked to GET requests according to best practices
  * are instead linked to POST requests
  *
  * This is because our functions has the option to do lengthy requests

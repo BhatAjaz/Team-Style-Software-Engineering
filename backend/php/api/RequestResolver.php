@@ -21,6 +21,14 @@ use backend\php\util\Container;
  *
  * e.g. "ArticleControllerInterface/getArticles"
  * Means that from the class ArticleControllerInterface, Call getArticles()
+ *
+ *
+ * Note: It may seem a bit convoluted now Resolve->Interface->Controller->Interface->Database
+ * But I am doing this just in case that future controllers might need to be messier and more complicated
+ * than what it is now to complete requests,
+ * and redirecting requests to different controller classes would ensure that our code remains readable
+ * feel free to refactor the code if you disagree
+ *
  * @author Beng
  */
 class RequestResolver implements RequestResolverInterface
