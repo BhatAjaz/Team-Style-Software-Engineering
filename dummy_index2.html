@@ -14,13 +14,19 @@
     const responseContainer = document.getElementById('response-container');
 
     fetchBtn.addEventListener('click', () => {
-        fetch('/api/articles/get', {
+        fetch('/api/articles', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                from: "Crimereads"
+                articles: {
+                    1: {
+                        from: "new section",
+                        title: "new aticles",
+                        content: "content"
+                    }
+                }
             })
         })
             .then(response => response.json())
