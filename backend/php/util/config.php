@@ -29,6 +29,7 @@ while(!$firestoreClient instanceof FirestoreClient){
 return [
     'interfaces' => [
         \backend\php\database\DatabaseInterface::class => function() use($firestoreClient) {return new \backend\php\database\firestore\Firestore($firestoreClient);},
+        \backend\php\database\DatabaseInterface::class => \backend\php\database\dummy\Dummy::class,
         \backend\php\api\RequestResolverInterface::class => \backend\php\api\RequestResolver::class,
         \backend\php\api\database\ArticleControllerInterface::class => \backend\php\api\database\ArticleController::class
    ]
