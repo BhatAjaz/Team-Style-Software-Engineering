@@ -6,11 +6,23 @@
 </head>
 <body>
 <h1>Fetch API Example</h1>
-<button id="fetch-btn">Fetch Data</button>
+<button id="add-btn">Add Data</button>
 <div id="response-container"></div>
 
+<button id="get-btn">Get Article</button>
+<div id="response-container2"></div>
+
+<button id="getid-btn">Get Article by Id</button>
+<div id="response-container3"></div>
+
+<button id="upd-btn">Update Article</button>
+<div id="response-container4"></div>
+
+<button id="del-btn">Delete Article</button>
+<div id="response-container5"></div>
+
 <script>
-    const fetchBtn = document.getElementById('fetch-btn');
+    const fetchBtn = document.getElementById('add-btn');
     const responseContainer = document.getElementById('response-container');
 
     fetchBtn.addEventListener('click', () => {
@@ -38,6 +50,131 @@
                 responseContainer.innerText = 'An error occurred while fetching the data.';
             });
     });
+
+    const getBtn = document.getElementById('get-btn');
+    const responseContainer2 = document.getElementById('response-container2');
+
+    getBtn.addEventListener('click', () => {
+        fetch('/api/articles/get', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( {
+                from: "new Demo section",
+                noOfArticles: 2,
+                order: "ascending"
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                responseContainer2.innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error(error);
+                responseContainer2.innerText = 'An error occurred while getting the data.';
+            });
+    });
+
+    const getIdBtn = document.getElementById('getid-btn');
+    const responseContainer3 = document.getElementById('response-container3');
+
+    getIdBtn.addEventListener('click', () => {
+        fetch('/api/articles/id/get', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                articles: {
+                    2: {
+                        from: "Crimereads",
+                        id: "vG7GatbnFqHds1SiTtnB"
+                    },
+                    3: {
+                        from: "Fiction and Poetry",
+                        id: "ex7UanwL6Pf5dWUKTw90"
+                    }
+                }
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                responseContainer3.innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error(error);
+                responseContainer3.innerText = 'An error occurred while getting the data.';
+            });
+    });
+
+    const updBtn = document.getElementById('upd-btn');
+    const responseContainer4 = document.getElementById('response-container4');
+
+    updBtn.addEventListener('click', () => {
+        fetch('/api/articles/id', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                articles: {
+                    7: {
+                        from: "new Demo section",
+                        id: "document 1",
+                        content: "Updated content during demo"
+                    },
+                    8: {
+                        from: "new Demo section 2",
+                        id: "document 2",
+                        title: "Updated title during demo",
+                        note: "newly added 'note' field"
+                    }
+                }
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                responseContainer4.innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error(error);
+                responseContainer4.innerText = 'An error occurred while getting the data.';
+            });
+    });
+
+    const delBtn = document.getElementById('del-btn');
+    const responseContainer5 = document.getElementById('response-container5');
+
+    delBtn.addEventListener('click', () => {
+        fetch('/api/articles/id', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                articles: {
+                    9: {
+                        from: "new Demo section",
+                        id: "document 1"
+                    },
+                    10: {
+                        from: "new Demo section 2",
+                        id: "document 2"
+                    }
+                }
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                responseContainer5.innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error(error);
+                responseContainer5.innerText = 'An error occurred while getting the data.';
+            });
+    });
+
 </script>
 </body>
 </html>
