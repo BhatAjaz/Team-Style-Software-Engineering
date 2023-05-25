@@ -8,7 +8,7 @@
 **Wee**
 
 ## Backend Notes  
-The Gmail account associated with the GitHub repository, Firebase, and MongoDB owner is softengineerubdjan2023student@gmail.com  
+The Gmail account associated with the Firebase, and MongoDB owner is softengineerubdjan2023student@gmail.com  
 Login to the Google Account in your browser and choose the "Connect with Google" option to login to these website.  
   
 Email benglei03606@gmail.com if the password is ever lost.  
