@@ -55,6 +55,7 @@ For Visual Studio 2022 Users:
     - We didn't figure how to run PHP codes on VS, Please complete this section if you are a VS user.  
     - Configure Xampp and Visual Studio Code to Work Together https://www.youtube.com/watch?v=QmUyB7uYL1w  
   
+Some features such as Rest API will need to be run through XAMPP's Apache to work properly. Intergrating XAMPP with your chosen IDE is good for smooth and efficient testing during coding.
 **Guides and Documentations**  
   
 PHP Styleguide:  
