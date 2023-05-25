@@ -14,7 +14,7 @@
     const responseContainer = document.getElementById('response-container');
 
     fetchBtn.addEventListener('click', () => {
-        fetch('/api/articles', {
+        fetch('/api/articles/id/get', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,9 +22,8 @@
             body: JSON.stringify({
                 articles: {
                     1: {
-                        from: "new section",
-                        title: "new aticles",
-                        content: "content"
+                        from: "Crimereads",
+                        id: "vG7GatbnFqHds1SiTtnB"
                     }
                 }
             })
