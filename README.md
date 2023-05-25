@@ -49,6 +49,9 @@ This guide uses PHPStorm IDE, feel free to use other IDEs
 6. *IMPORTANT* Complete Composer setup by running 'composer install' in the IDE's terminal
 7. (Optional) Setup the IDE to automatically run tests using the test folder after commits https://www.jetbrains.com/help/phpstorm/performing-tests.html#run-tests-after-commit
 
+For Visual Studio Users:
+Configure Xampp and Visual Studio Code to Work Together
+https://www.youtube.com/watch?v=QmUyB7uYL1w
 
 **Guides and Documentations**
 
