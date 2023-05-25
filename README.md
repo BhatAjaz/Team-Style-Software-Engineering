@@ -1,5 +1,5 @@
 ## FrontEnd Members
-[deployment page](https://softwareengineeringubd.github.io/Team-Style-Software-Engineering)
+[deployment page](https://BhatAjaz.github.io/Team-Style-Software-Engineering)
 
 **Eric**
 **Qayyum**
@@ -10,7 +10,7 @@
 ## Backend Notes  
 The Gmail account associated with the Firebase, and MongoDB owner is softengineerubdjan2023student@gmail.com  
 Login to the Google Account in your browser and choose the "Connect with Google" option to login to these website.  
-  
+Password can be found on the desktop of SDS/TABLET/02 Tablet Laptop  
 Email benglei03606@gmail.com if the password is ever lost.  
   
   
