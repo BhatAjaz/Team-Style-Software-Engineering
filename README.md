@@ -46,8 +46,10 @@ This guide uses PHPStorm IDE, feel free to use other IDEs
 1. Install PHPStorm IDE  
 2. Link GitHub account with PHPStorm and clone the repository https://www.jetbrains.com/help/phpstorm/manage-projects-hosted-on-github.html#clone-from-GitHub  
 4. Integrate XAMPP with PHPStorm https://www.jetbrains.com/help/phpstorm/installing-an-amp-package.html#integrating-xampp  
-6. *IMPORTANT* Complete Composer setup by running 'composer install' in the IDE's terminal  
-7. (Optional) Setup the IDE to automatically run tests using the test folder after commits https://www.jetbrains.com/help/phpstorm/performing-tests.html#run-tests-after-commit  
+5. *IMPORTANT* Complete MongoDB Setup with Composer by running 'composer require mongodb/mongodb' in the IDE's terminal  
+    Note: Delete the lines for mongodb under the "require" section of composer.json if there are any.
+7. *IMPORTANT* Complete Composer setup by running 'composer install' in the IDE's terminal  
+8. (Optional) Setup the IDE to automatically run tests using the test folder after commits https://www.jetbrains.com/help/phpstorm/performing-tests.html#run-tests-after-commit  
   
 For Visual Studio 2022 Users:  
     - We didn't figure how to run PHP codes on VS, Please complete this section if you are a VS user.  
